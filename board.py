@@ -9,6 +9,5 @@ lable1 = Label(board,bg="green").grid(row=0,column=1)
 lable2 = Label(board,bg="red").grid(row=0,column=2)
 
 
-#### Git activate
-
 board.mainloop()
+
