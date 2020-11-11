@@ -4,8 +4,16 @@ class Piece:
     def __init__(self):
         pass
 
+    def move(self, start, end, length):
+        pass
+
 
 class gBox():
+    def __init__(self):
+        pass
+
+
+class yBox():
     def __init__(self):
         pass
 
