@@ -90,11 +90,16 @@ can_board.pack()
 # can_board.create_oval(670, 40, 730, 100)
 # can_board.create_oval(20, 550, 80, 610)
 # can_board.create_oval(670, 550, 730, 610)
+def func1(event):
+    #move
+    lbl_blue.place(x=200,y=200)
 
 lbl_blue = Label(can_board, image=photo_blue_player)
+lbl_blue.bind("<Button-1>",func1)
 lbl_blue.place(x=132, y=56)  # x + 12  y+6
+
 lbl_num_blue = Label(can_board, text="4", fg="white", bg="#010080")
-lbl_num_blue.place(x=140, y=80)  # x+22 y+30
+lbl_num_blue.place(x=140, y=80)  # x+20 y+30
 
 lbl_red = Label(can_board, image=photo_red_player)
 lbl_red.place(x=612, y=56)
