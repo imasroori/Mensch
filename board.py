@@ -25,7 +25,7 @@ frame_right.grid(row=0, column=1)
 
 can_board = Canvas(frame_right, width=750, height=660)
 can_board.pack()
-<<<<<<< HEAD
+
 
 can_board.create_oval(20, 40, 80, 100)
 can_board.create_oval(670, 40, 730, 100)
@@ -85,8 +85,7 @@ for i in range(570, 750, 80):
 # for i in range(390,570,80):
 #     can_board.create_oval(400, i, 460, i+60)
 #
-=======
-#
+
 # can_board.create_oval(20, 40, 80, 100)
 # can_board.create_oval(670, 40, 730, 100)
 # can_board.create_oval(20, 550, 80, 610)
@@ -132,7 +131,6 @@ for i in range(7):
                 can_board.create_oval(80 * i + 120, 80 * j + 50, 80 * i + 180, 80 * j + 110, fill="#ff5050")
             else:
                 can_board.create_oval(80 * i + 120, 80 * j + 50, 80 * i + 180, 80 * j + 110, fill="#ffffff")
->>>>>>> phase1
 
 
 frame_panel = Frame(frame_left, width=200, height=250)
