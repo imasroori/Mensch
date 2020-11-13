@@ -11,6 +11,10 @@ def quit():
 values_color = ['YELLOW', 'GREEN', 'BLUE', 'RED']
 
 
+
+
+
+
 def check_user():
     username = entry_user.get()
     password = entry_pass.get()
@@ -20,13 +24,12 @@ def check_user():
     with open("content/players_user_pass.txt", 'r') as file1:
         for line in file1:
             key, val = line.strip().split()
-            print(key)
-            print(val)
             if username == key and val == password:
                 print("ok")
                 print(username)
                 print(password)
                 print(color_selected)
+
                 break
         else:
             print("نام کاربری موجود نیست!")

@@ -25,65 +25,52 @@ frame_right.grid(row=0, column=1)
 
 can_board = Canvas(frame_right, width=750, height=660)
 can_board.pack()
-
-can_board.create_oval(20, 40, 80, 100)
-can_board.create_oval(670, 40, 730, 100)
-can_board.create_oval(20, 550, 80, 610)
-can_board.create_oval(670, 550, 730, 610)
+#
+# can_board.create_oval(20, 40, 80, 100)
+# can_board.create_oval(670, 40, 730, 100)
+# can_board.create_oval(20, 550, 80, 610)
+# can_board.create_oval(670, 550, 730, 610)
 
 lbl_blue = Label(can_board, image=photo_blue_player)
-lbl_blue.place(x=32, y=46)  # x + 12  y+6
+lbl_blue.place(x=132, y=56)  # x + 12  y+6
 lbl_num_blue = Label(can_board, text="4", fg="white", bg="#010080")
-lbl_num_blue.place(x=42, y=70)  # x+22 y+30
+lbl_num_blue.place(x=140, y=80)  # x+22 y+30
 
 lbl_red = Label(can_board, image=photo_red_player)
-lbl_red.place(x=682, y=46)
+lbl_red.place(x=612, y=56)
 lbl_num_red = Label(can_board, text="4", fg="white", bg="red")
-lbl_num_red.place(x=692, y=70)
+lbl_num_red.place(x=620, y=80)
 
 lbl_green = Label(can_board, image=photo_green_player)
-lbl_green.place(x=32, y=556)
+lbl_green.place(x=132, y=536)
 lbl_num_green = Label(can_board, text="4", fg="white", bg="green")
-lbl_num_green.place(x=42, y=580)
+lbl_num_green.place(x=140, y=560)
 
 lbl_yellow = Label(can_board, image=photo_yellow_player)
-lbl_yellow.place(x=682, y=556)
+lbl_yellow.place(x=612, y=536)
 lbl_num_yellow = Label(can_board, text="4", fg="white", bg="yellow")
-lbl_num_yellow.place(x=692, y=580)
+lbl_num_yellow.place(x=620, y=560)
 
-for i in range(40, 220, 80):
-    can_board.create_oval(250, i, 310, i + 60)
-    if i < 180:
-        can_board.create_oval(325, i, 385, i + 60)
+c = 0
+for i in range(7):
+    for j in range(7):
+        c += 1
+        if c in [2, 6, 8, 9, 13, 14, 18, 24, 25, 26, 32, 36, 37, 41, 42, 44, 48]:
+            continue
+        else:
+            if c in [1, 3, 11]:
+                can_board.create_oval(80 * i + 120, 80 * j + 50, 80 * i + 180, 80 * j + 110, fill="#5050ff")
 
-for i in range(390, 570, 80):
-    can_board.create_oval(250, i, 310, i + 60)
-    if i > 430:
-        can_board.create_oval(325, i, 385, i + 60)
+            elif c in [7, 21, 27]:
+                can_board.create_oval(80 * i + 120, 80 * j + 50, 80 * i + 180, 80 * j + 110, fill="#50ff50")
 
-for i in range(40, 220, 80):
-    can_board.create_oval(400, i, 460, i + 60)
+            elif c in [39, 47, 49]:
+                can_board.create_oval(80 * i + 120, 80 * j + 50, 80 * i + 180, 80 * j + 110, fill="#ffff50")
 
-for i in range(390, 570, 80):
-    can_board.create_oval(400, i, 460, i + 60)
-
-for i in range(20, 200, 80):
-    can_board.create_oval(i, 280, i + 60, 340)
-    if i < 110:
-        can_board.create_oval(i, 280, i + 60, 340)
-
-for i in range(570, 750, 80):
-    can_board.create_oval(i, 210, i + 60, 270)
-    if i > 430:
-        can_board.create_oval(325, i, 385, i + 60)
-
-# for i in range(40,220,80):
-#     can_board.create_oval(400, i, 460, i+60)
-#
-#
-# for i in range(390,570,80):
-#     can_board.create_oval(400, i, 460, i+60)
-#
+            elif c in [23, 29, 43]:
+                can_board.create_oval(80 * i + 120, 80 * j + 50, 80 * i + 180, 80 * j + 110, fill="#ff5050")
+            else:
+                can_board.create_oval(80 * i + 120, 80 * j + 50, 80 * i + 180, 80 * j + 110, fill="#ffffff")
 
 
 frame_panel = Frame(frame_left, width=200, height=250)
@@ -105,8 +92,17 @@ frame_roll.place(x=0, y=250)
 # paned_roll = PanedWindow(frame_roll)
 # paned_roll.pack()
 def roll_dice():
-    roll_num = random.randint(1, 6)
-    lbl_roll.configure(text=roll_num)
+    # roll_nums = []
+    roll_nums = random.randint(1, 6)
+    # if roll_nums[0] == 6:
+    #     roll_nums[1] = random.randint(1,6)
+    #     if roll_nums[1] == 6:
+    #         roll_nums[2] = random.randint(1,6)
+    #     else:
+    #         return roll_nums
+    # else:
+    #     return roll_nums
+    lbl_roll.configure(text=roll_nums)
 
 
 lbl_turn = Label(frame_roll, text="turn: BLUE", font="Nazli 20 bold")
