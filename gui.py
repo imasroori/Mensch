@@ -141,7 +141,7 @@ class Board:
                             self.counter_player += 1
                             print("self.counter_player", self.counter_player)
                         if color_selected == "RED":
-                            self.reds = [logic.Bbox() for _ in range(4)]
+                            self.reds = [logic.Rbox() for _ in range(4)]
                             self.lbl_red.configure(text=4, fg="white", font="Nazli 15 bold", compound=CENTER)
                             self.lbl_red.place(x=612, y=56)
                             self.lbl_user2.config(text=username, fg="red")

@@ -16,7 +16,7 @@ class Gbox():
     all_count = 4
     counter = 0
 
-    def __init__(self, id, step, state):
+    def __init__(self, id=green_step[0], step=None, state=None):
         self.counter += 1
         self.id = id
         self.step = step
