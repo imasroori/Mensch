@@ -43,6 +43,9 @@ class Gbox():
         else:
             return False
 
+    def __del__(self):
+        del self
+
 
 class Ybox():
     yellow_step = [49, 47, 40, 33, 34, 35, 28, 21, 20, 19, 12, 5, 4, 3, 10, 17, 16, 15, 22, 29, 30, 31, 38, 45, 46, 39]
@@ -80,6 +83,8 @@ class Ybox():
     def move(self):
 
         return self.yellow_step[Ybox.yellow_step.index(self.idd) + self.step]
+    def __del__(self):
+        del self
 
 
 class Bbox():
@@ -118,6 +123,9 @@ class Bbox():
 
         return self.blue_step[Bbox.blue_step.index(self.idd) + self.step]
 
+    def __del__(self):
+        del self
+
 
 class Rbox():
     red_step = [43, 29, 30, 31, 38, 45, 46, 47, 40, 33, 34, 35, 28, 21, 20, 19, 12, 5, 4, 3, 10, 17, 16, 15, 22, 23]
@@ -153,7 +161,8 @@ class Rbox():
     def move(self):
 
         return self.red_step[Rbox.red_step.index(self.idd) + self.step]
-
+    def __del__(self):
+        del self
 
 def turn():
     turn_list = iter([1, 2, 3, 4])

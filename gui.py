@@ -60,8 +60,14 @@ class Board:
         self.can_board = Canvas(self.frame_right, width=750, height=660)
         self.can_board.pack()
 
-        self.lbl_blue = Label(self.can_board, image=self.photo_blue_player)
-        self.lbl_blue.bind("<Button-1>", self.func1)
+        self.lbl_blue_1 = Label(self.can_board, image=self.photo_blue_player)
+        self.lbl_blue_2 = Label(self.can_board, image=self.photo_blue_player)
+        self.lbl_blue_3 = Label(self.can_board, image=self.photo_blue_player)
+        self.lbl_blue_4 = Label(self.can_board, image=self.photo_blue_player)
+        self.lbl_blue_1.bind("<Button-1>", self.func1)
+        self.lbl_blue_2.bind("<Button-1>", self.func1)
+        self.lbl_blue_3.bind("<Button-1>", self.func1)
+        self.lbl_blue_4.bind("<Button-1>", self.func1)
 
         self.master.bind("<Button-1>", self.callback)
         self.lbl_red = Label(self.can_board, image=self.photo_red_player)
@@ -98,7 +104,7 @@ class Board:
 
         self.frame_panel = Frame(self.frame_left, width=200, height=250)
         self.frame_panel.place(x=0, y=0)
-        self.lbl_players = Label(self.frame_panel,text="Players",font="Nazli 18 bold")
+        self.lbl_players = Label(self.frame_panel, text="Players", font="Nazli 18 bold")
         self.lbl_user1 = Label(self.frame_panel, font="Nazli 18 bold")
 
         self.lbl_user2 = Label(self.frame_panel, font="Nazli 18 bold")
@@ -131,12 +137,26 @@ class Board:
                         self.player_and_colors.append((username, color_selected))
                         self.lbl_players.pack(side=TOP)
                         if color_selected == "BLUE":
-                            self.blues = [logic.Bbox() for _ in range(4)]
-                            self.lbl_blue.configure(text=len(self.blues), fg="white", font="Nazli 15 bold", compound=CENTER)
-                            self.lbl_blue.place(x=132, y=56)  # x + 12  y+6
+                            self.blues = [logic.Bbox(idd=logic.Bbox.blue_step[0]) for _ in range(4)]
+
+                            # self.lbl_blue_1.configure(text=len(self.blues), fg="white", font="Nazli 15 bold", compound=CENTER)
+                            self.lbl_blue_1.place(x=80 * ((self.blues[0].idd % 7) - 1) + 132,
+                                                  y=80 * (self.blues[0].idd // 7) + 56)  # x + 12  y+6 132,56
+
+                            # self.lbl_blue_2.configure(text=len(self.blues), fg="white", font="Nazli 15 bold", compound=CENTER)
+                            self.lbl_blue_2.place(x=80 * ((self.blues[0].idd % 7) - 1) + 132,
+                                                  y=80 * (self.blues[0].idd // 7) + 56)  # x + 12  y+6 132,56
+
+                            # self.lbl_blue_3.configure(text=len(self.blues), fg="white", font="Nazli 15 bold", compound=CENTER)
+                            self.lbl_blue_3.place(x=80 * ((self.blues[0].idd % 7) - 1) + 132,
+                                                  y=80 * (self.blues[0].idd // 7) + 56)  # x + 12  y+6 132,56
+
+                            # self.lbl_blue_4.configure(text=len(self.blues), fg="white", font="Nazli 15 bold", compound=CENTER)
+                            self.lbl_blue_4.place(x=80 * ((self.blues[0].idd % 7) - 1) + 132,
+                                                  y=80 * (self.blues[0].idd // 7) + 56)  # x + 12  y+6 132,56
+
                             self.lbl_user1.config(text=username, fg="blue")
                             self.lbl_user1.pack(padx=50, pady=2)
-
 
                             self.counter_player += 1
                             print("self.counter_player", self.counter_player)
@@ -146,11 +166,13 @@ class Board:
                             self.lbl_red.place(x=612, y=56)
                             self.lbl_user2.config(text=username, fg="red")
                             self.lbl_user2.pack(padx=50, pady=2)
+
                             self.counter_player += 1
                             print("self.counter_player", self.counter_player)
                         if color_selected == "GREEN":
                             self.greens = [logic.Gbox() for _ in range(4)]
-                            self.lbl_green.configure(text=len(self.greens), fg="white", font="Nazli 15 bold", compound=CENTER)
+                            self.lbl_green.configure(text=len(self.greens), fg="white", font="Nazli 15 bold",
+                                                     compound=CENTER)
                             self.lbl_green.place(x=132, y=536)
                             self.lbl_user3.config(text=username, fg="green")
                             self.lbl_user3.pack(padx=50, pady=2)
@@ -159,7 +181,8 @@ class Board:
                             print("self.counter_player", self.counter_player)
                         if color_selected == "YELLOW":
                             self.yellows = [logic.Ybox() for _ in range(4)]
-                            self.lbl_yellow.configure(text=len(self.yellows), fg="white", font="Nazli 15 bold", compound=CENTER)
+                            self.lbl_yellow.configure(text=len(self.yellows), fg="white", font="Nazli 15 bold",
+                                                      compound=CENTER)
                             self.lbl_yellow.place(x=612, y=536)
                             self.lbl_user4.config(text=username, fg="yellow")
                             self.lbl_user4.pack(padx=50, pady=2)
@@ -210,7 +233,6 @@ class Board:
                                   font="Nazli 15 bold")
             self.lbl_ok.place(x=220, y=212)
 
-
     def cancel(self):
         self.login_form.transient(self.master)
         self.login_form.withdraw()
@@ -218,6 +240,10 @@ class Board:
     def new_game(self):
         print("Restart Game!")
         self.destroy()
+        del self.blues
+        del self.greens
+        del self.reds
+        del self.yellows
         board = Tk()
         print("AddPlayer.counter_player,", AddPlayer.counter_player)
         Board(board)
@@ -287,9 +313,16 @@ class Board:
         print(f'turn is :{self.turn_player}')
 
     def func1(self, event):
-        self.lbl_blue.place(x=300, y=300)
+        step = logic.Bbox.blue_step[logic.Bbox.blue_step.index(self.blues[0].idd) + self.roll_num]
+        self.lbl_blue_1.place(x=80 * ((step % 7) - 1) + 132, y=80 * (step // 7) + 56)
+        self.blues[0].idd = step
+        print("iddd is",self.blues[0].idd)
+        self.lbl_blue_2.place(x=500, y=300)
+        self.lbl_blue_3.place(x=600, y=300)
+        self.lbl_blue_4.place(x=700, y=300)
 
-    def callback(self, event):
+    @staticmethod
+    def callback(event):
         print("clicked on ", event.x, event.y)
 
     def turn(self):
