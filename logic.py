@@ -15,9 +15,9 @@ class Gbox():
     green_step = [7, 21, 20, 19, 12, 5, 4, 3, 10, 17, 16, 15, 22, 29, 30, 31, 38, 45, 46, 47, 40, 33, 34, 35, 28, 27]
     counter_all_piece = 0
 
-    def __init__(self, id=green_step[0], step=None, state=None):
+    def __init__(self, idd=green_step[0], step=None, state=None):
         self.counter_all_piece += 1
-        self.id = id
+        self.idd = idd
         self.step = step
         self.state = state
         self.counter_all_piece += 1
@@ -25,19 +25,19 @@ class Gbox():
             raise Exception("no extra")
 
     def at_home(self):
-        if self.id == self.green_step[-1]:
+        if self.idd == self.green_step[-1]:
             return True
         else:
             return False
 
     def in_game(self):
-        if self.id != self.green_step[0] and self.id != self.green_step[-1]:
+        if self.idd!= self.green_step[0] and self.idd != self.green_step[-1]:
             return True
         else:
             return False
 
     def out_game(self):
-        if self.id == self.green_step[0]:
+        if self.idd == self.green_step[0]:
             return True
         else:
             return False
@@ -57,7 +57,8 @@ class Ybox():
         self.step = step
         self.state = state
         self.counter_all_piece += 1
-        print("num blues", self.counter_all_piece)
+        Ybox.counter_all_piece += 1
+        print("num blues", self.counter_all_piece,Ybox.counter_all_piece)
         if self.counter_all_piece > 4:
             raise Exception("no extra")
 

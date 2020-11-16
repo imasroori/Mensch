@@ -240,6 +240,7 @@ class Board:
     def new_game(self):
         print("Restart Game!")
         self.destroy()
+
         board = Tk()
         print("AddPlayer.counter_player,", AddPlayer.counter_player)
         Board(board)
