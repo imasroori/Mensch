@@ -316,6 +316,7 @@ class Board:
         self.lbl_blue_2.place(x=80 * (((step+6) //7)-1) + 120, y=80 * ((step+6) % 7) + 50)
         self.lbl_blue_3.place(x=600, y=300)
         self.lbl_blue_4.place(x=700, y=300)
+        #### TEST ####
 
     @staticmethod
     def callback(event):
