@@ -1,6 +1,108 @@
 # 1st Project on MaktabSharif,Maktab42, Code by Iman Masroori
 """ In this Module logic of game are designed"""
 import random
+import gui
+
+
+def roll_dice(turn_player):
+    x = turn_player % len(AddPlayer.turn_player_list_logic)
+    print(x,turn_player,AddPlayer.turn_player_list_logic)
+    print("nooobat ineh --->>>", AddPlayer.turn_player_list_logic[x])
+    # if AddPlayer.turn_player_list_logic[x][1] == 'GREEN':
+    #     for i in AddPlayer.greens_piece:
+    #         print(i.idd,"idididididididididid")
+    #         # print(type(i))
+    #         if i.idd == Gbox.green_step[0]:
+    #             return [random.randint(1,6)]
+    #         elif i.idd != Gbox.green_step[-1]:
+    #             i = None
+    #         else:
+    #             return random.randint(1,6)
+    # if AddPlayer.turn_player_list_logic[x][1] == 'BLUE':
+    #     flag = [0,0,0,0]
+    #     for i in range(4):
+    #         if AddPlayer.blues_piece[i].in_game():
+    #             flag[i] = 1
+    #     if flag:
+    #         roll = random.randint(1,6)
+    #
+    #         return random.randint(1,6)
+    #
+    #
+    #             random.randint(1,6)
+    #         elif i.idd != Bbox.blue_step[-1]:
+    #             i = None
+    #         else:
+    #             return random.randint(1,6)
+    #
+    # if AddPlayer.greens_piece:
+    #     print(*[AddPlayer.greens_piece[i].at_home() for i in range(4)])
+    #     print(*[AddPlayer.greens_piece[i].out_game() for i in range(4)])
+    #
+    # if AddPlayer.yellows_piece:
+    #     print("---------------------------")
+    #     print([AddPlayer.yellows_piece[i] for i in range(4)])
+    #
+    # if AddPlayer.blues_piece:
+    #     print("+++++++++++++++++++++++++++++++")
+    #     print([AddPlayer.blues_piece[x].out_game() for i in range(4)])
+    #
+    # if AddPlayer.reds_piece:
+    #     print('*************************')
+    #     print(*[AddPlayer.reds_piece[i].idd for i in range(4)])
+
+    return random.randint(1, 6)
+
+
+
+class AddPlayer:
+    counter_player = 0
+    turn_player_list_logic = []
+    blues_piece = []
+    reds_piece = []
+    yellows_piece = []
+    greens_piece = []
+
+    def __init__(self, user, color):
+        # self.counter_player += 1
+        AddPlayer.counter_player += 1
+        print(self.counter_player, "jjjjjjj", AddPlayer.counter_player)
+        self.user = user
+        self.color = color
+        self.turn_player_list_logic.append((self.user, self.color))
+        # print((self.user, self.color))
+        print(self.turn_player_list_logic)
+        self.init_instance()
+
+    def init_instance(self):
+        if self.color == 'BLUE':
+            AddPlayer.blues_piece = [Bbox() for _ in range(4)]
+            print("Huuuuuuu", *[AddPlayer.blues_piece[i].idd for i in range(4)])
+
+        if self.color == 'RED':
+            AddPlayer.reds_piece = [Rbox() for _ in range(4)]
+            print("Huuuuuuu", *[AddPlayer.reds_piece[i].idd for i in range(4)])
+        if self.color == 'GREEN':
+            AddPlayer.greens_piece = [Gbox() for _ in range(4)]
+            print("Huuuuuuu", *[AddPlayer.greens_piece[i].idd for i in range(4)])
+            print("bbbbbbbb", *[AddPlayer.greens_piece[i].state for i in range(4)])
+            print("Hnnnnnnn", *[AddPlayer.greens_piece[i].at_home() for i in range(4)])
+            print("typessss", [type(AddPlayer.greens_piece[i]) for i in range(4)])
+            [print(AddPlayer.greens_piece[i]) for i in range(4)]
+        if self.color == 'YELLOW':
+            AddPlayer.yellows_piece = [Ybox() for _ in range(4)]
+            print("Huuuuuuu", *[AddPlayer.yellows_piece[i].idd for i in range(4)])
+
+        print(AddPlayer.counter_player)
+
+    # @property
+    # def show_users(self):
+    #     # print((self.user, self.color))
+    #     return (self.user, self.color)
+
+    @property
+    def num_players(self):
+        return self.counter_player
 
 
 class Piece:
@@ -15,35 +117,36 @@ class Gbox():
     green_step = [7, 21, 20, 19, 12, 5, 4, 3, 10, 17, 16, 15, 22, 29, 30, 31, 38, 45, 46, 47, 40, 33, 34, 35, 28, 27]
     counter_all_piece = 0
 
-    def __init__(self, id=green_step[0], step=None, state=None):
-        self.counter_all_piece += 1
-        self.id = id
+    def __init__(self, idd=green_step[0], step=None, state=None):
+
+        self.idd = idd
         self.step = step
         self.state = state
         self.counter_all_piece += 1
+
         if self.counter_all_piece > 4:
             raise Exception("no extra")
 
     def at_home(self):
-        if self.id == self.green_step[-1]:
+        if self.idd == self.green_step[-1]:
             return True
         else:
             return False
 
     def in_game(self):
-        if self.id != self.green_step[0] and self.id != self.green_step[-1]:
+        if self.idd != self.green_step[0] and self.idd != self.green_step[-1]:
             return True
         else:
             return False
 
     def out_game(self):
-        if self.id == self.green_step[0]:
+        if self.idd == self.green_step[0]:
             return True
         else:
             return False
 
-    def __del__(self):
-        del self
+
+
 
 
 class Ybox():
@@ -52,12 +155,11 @@ class Ybox():
     counter_all_piece = 0
 
     def __init__(self, idd=yellow_step[0], step=None, state=None):
-        # self.counter_all_piece += 1
+
         self.idd = idd
         self.step = step
         self.state = state
         self.counter_all_piece += 1
-        print("num blues", self.counter_all_piece)
         if self.counter_all_piece > 4:
             raise Exception("no extra")
 
@@ -92,12 +194,11 @@ class Bbox():
     counter_all_piece = 0
 
     def __init__(self, idd=blue_step[0], step=None, state=None):
-        # self.counter_all_piece += 1
+
         self.idd = idd
         self.step = step
         self.state = state
         self.counter_all_piece += 1
-        print("num blues", self.counter_all_piece)
         if self.counter_all_piece > 4:
             raise Exception("no extra")
 
@@ -136,7 +237,6 @@ class Rbox():
         self.step = step
         self.state = state
         self.counter_all_piece += 1
-        print("num blues", Bbox.counter_all_piece)
         if self.counter_all_piece > 4:
             raise Exception("no extra")
 
@@ -166,14 +266,7 @@ class Rbox():
         del self
 
 
-def turn():
-    turn_list = iter([1, 2, 3, 4])
-    return next(turn_list)
 
 
-if __name__ == '__main__':
-    print("ddd", turn())
-
-    print(len(Bbox.blue_step), len(Rbox.red_step), len(Ybox.yellow_step), len(Gbox.green_step))
-    list_circle_board = [0]
-    print(Bbox(17, 1).move())
+# cc = Bbox(2)
+# print(type(cc))
