@@ -240,10 +240,6 @@ class Board:
     def new_game(self):
         print("Restart Game!")
         self.destroy()
-        del self.blues
-        del self.greens
-        del self.reds
-        del self.yellows
         board = Tk()
         print("AddPlayer.counter_player,", AddPlayer.counter_player)
         Board(board)
@@ -314,10 +310,10 @@ class Board:
 
     def func1(self, event):
         step = logic.Bbox.blue_step[logic.Bbox.blue_step.index(self.blues[0].idd) + self.roll_num]
-        self.lbl_blue_1.place(x=80 * ((step % 7) - 1) + 132, y=80 * (step // 7) + 56)
+        self.lbl_blue_1.place(x=80 * (((step+6) //7)-1) + 132, y=80 * ((step+6) % 7) + 56)
         self.blues[0].idd = step
         print("iddd is",self.blues[0].idd)
-        self.lbl_blue_2.place(x=500, y=300)
+        self.lbl_blue_2.place(x=80 * (((step+6) //7)-1) + 120, y=80 * ((step+6) % 7) + 50)
         self.lbl_blue_3.place(x=600, y=300)
         self.lbl_blue_4.place(x=700, y=300)
 
