@@ -9,51 +9,11 @@ def roll_dice(turn_player):
     print(x, turn_player, AddPlayer.turn_player_list_logic)
     print("nooobat ineh --->>>", AddPlayer.turn_player_list_logic[x])
     temp_list_players = AddPlayer.turn_player_list_logic.copy()
-    if AddPlayer.turn_player_list_logic[x][1] == "BLUE":
-        if Bbox.out_game(AddPlayer.blues_piece):
+    # if AddPlayer.turn_player_list_logic[x][1] == "BLUE":
+    #     if Bbox.out_game(AddPlayer.blues_piece):
+    #         gui.Board.lbl_roll.configure(text=random.randint(20,26))
+    #
 
-    # if AddPlayer.turn_player_list_logic[x][1] == 'GREEN':
-    #     for i in AddPlayer.greens_piece:
-    #         print(i.idd,"idididididididididid")
-    #         # print(type(i))
-    #         if i.idd == Gbox.green_step[0]:
-    #             return [random.randint(1,6)]
-    #         elif i.idd != Gbox.green_step[-1]:
-    #             i = None
-    #         else:
-    #             return random.randint(1,6)
-    # if AddPlayer.turn_player_list_logic[x][1] == 'BLUE':
-    #     flag = [0,0,0,0]
-    #     for i in range(4):
-    #         if AddPlayer.blues_piece[i].in_game():
-    #             flag[i] = 1
-    #     if flag:
-    #         roll = random.randint(1,6)
-    #
-    #         return random.randint(1,6)
-    #
-    #
-    #             random.randint(1,6)
-    #         elif i.idd != Bbox.blue_step[-1]:
-    #             i = None
-    #         else:
-    #             return random.randint(1,6)
-    #
-    # if AddPlayer.greens_piece:
-    #     print(*[AddPlayer.greens_piece[i].at_home() for i in range(4)])
-    #     print(*[AddPlayer.greens_piece[i].out_game() for i in range(4)])
-    #
-    # if AddPlayer.yellows_piece:
-    #     print("---------------------------")
-    #     print([AddPlayer.yellows_piece[i] for i in range(4)])
-    #
-    # if AddPlayer.blues_piece:
-    #     print("+++++++++++++++++++++++++++++++")
-    #     print([AddPlayer.blues_piece[x].out_game() for i in range(4)])
-    #
-    # if AddPlayer.reds_piece:
-    #     print('*************************')
-    #     print(*[AddPlayer.reds_piece[i].idd for i in range(4)])
 
     return random.randint(1, 6)
 
@@ -139,11 +99,15 @@ class Gbox():
         else:
             return False
 
-    def out_game(self):
-        if self.idd == self.green_step[0]:
-            return True
+    @staticmethod
+    def out_game(greens_piece):
+        for i in greens_piece:
+            if i.idd != Gbox.green_step[0]:
+                return False
+            else:
+                continue
         else:
-            return False
+            return True
 
 
 class Ybox():
@@ -172,11 +136,16 @@ class Ybox():
         else:
             return False
 
-    def out_game(self):
-        if self.idd == self.yellow_step[0]:
-            return True
+    @staticmethod
+    def out_game(yellows_piece):
+        for i in yellows_piece:
+            if i.idd != Ybox.yellow_step[0]:
+                return False
+            else:
+                continue
         else:
-            return False
+            return True
+
 
     def move(self):
 
@@ -211,11 +180,15 @@ class Bbox():
         else:
             return False
 
-    def out_game(self):
-        if self.idd == self.blue_step[0]:
-            return True
+    @staticmethod
+    def out_game(blues_piece):
+        for i in blues_piece:
+            if i.idd != Bbox.blue_step[0]:
+                return False
+            else:
+                continue
         else:
-            return False
+            return True
 
     def move(self):
 
@@ -249,11 +222,15 @@ class Rbox():
         else:
             return False
 
-    def out_game(self):
-        if self.idd == self.red_step[0]:
-            return True
+    @staticmethod
+    def out_game(reds_piece):
+        for i in reds_piece:
+            if i.idd != Rbox.red_step[0]:
+                return False
+            else:
+                continue
         else:
-            return False
+            return True
 
     def move(self):
 

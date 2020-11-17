@@ -11,6 +11,7 @@ class Board:
     blues = []
     greens = []
     yellows = []
+    # lbl_roll = Label()
 
     def __init__(self, master):
         self.master = master
@@ -526,6 +527,6 @@ class Board:
             self.lbl_turn.pack()
         else:
             self.lbl_turn.configure(
-                text=f"TURN: {logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][0]}",
-                fg=color,font="Nazli 20 bold")
+                text=f"TURN:{logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][0]}",
+                fg=color,font="Nazli 17 bold")
             self.lbl_turn.pack()
