@@ -6,7 +6,7 @@ import gui
 
 def roll_dice(turn_player):
     x = turn_player % len(AddPlayer.turn_player_list_logic)
-    print(x,turn_player,AddPlayer.turn_player_list_logic)
+    print(x, turn_player, AddPlayer.turn_player_list_logic)
     print("nooobat ineh --->>>", AddPlayer.turn_player_list_logic[x])
     # if AddPlayer.turn_player_list_logic[x][1] == 'GREEN':
     #     for i in AddPlayer.greens_piece:
@@ -50,9 +50,8 @@ def roll_dice(turn_player):
     # if AddPlayer.reds_piece:
     #     print('*************************')
     #     print(*[AddPlayer.reds_piece[i].idd for i in range(4)])
-
+    print(Rbox.out_game(AddPlayer.reds_piece))
     return random.randint(1, 6)
-
 
 
 class AddPlayer:
@@ -64,36 +63,31 @@ class AddPlayer:
     greens_piece = []
 
     def __init__(self, user, color):
-        # self.counter_player += 1
         AddPlayer.counter_player += 1
-        print(self.counter_player, "jjjjjjj", AddPlayer.counter_player)
         self.user = user
         self.color = color
         self.turn_player_list_logic.append((self.user, self.color))
-        # print((self.user, self.color))
-        print(self.turn_player_list_logic)
+        print(f'(user,color) are ==> {self.turn_player_list_logic}')
         self.init_instance()
 
     def init_instance(self):
         if self.color == 'BLUE':
             AddPlayer.blues_piece = [Bbox() for _ in range(4)]
-            print("Huuuuuuu", *[AddPlayer.blues_piece[i].idd for i in range(4)])
+            print("BLUE Pieces Created!")
 
         if self.color == 'RED':
             AddPlayer.reds_piece = [Rbox() for _ in range(4)]
-            print("Huuuuuuu", *[AddPlayer.reds_piece[i].idd for i in range(4)])
+            print("RED Pieces Created!")
+
         if self.color == 'GREEN':
             AddPlayer.greens_piece = [Gbox() for _ in range(4)]
-            print("Huuuuuuu", *[AddPlayer.greens_piece[i].idd for i in range(4)])
-            print("bbbbbbbb", *[AddPlayer.greens_piece[i].state for i in range(4)])
-            print("Hnnnnnnn", *[AddPlayer.greens_piece[i].at_home() for i in range(4)])
-            print("typessss", [type(AddPlayer.greens_piece[i]) for i in range(4)])
-            [print(AddPlayer.greens_piece[i]) for i in range(4)]
+            print("GREEN Pieces Created!")
+
         if self.color == 'YELLOW':
             AddPlayer.yellows_piece = [Ybox() for _ in range(4)]
-            print("Huuuuuuu", *[AddPlayer.yellows_piece[i].idd for i in range(4)])
+            print("YELLOW Pieces Created!")
 
-        print(AddPlayer.counter_player)
+        print(f"Counter of users is: {AddPlayer.counter_player}")
 
     # @property
     # def show_users(self):
@@ -139,14 +133,15 @@ class Gbox():
         else:
             return False
 
-    def out_game(self):
-        if self.idd == self.green_step[0]:
-            return True
+    @staticmethod
+    def out_game(greens_piece):
+        for i in greens_piece:
+            if i.idd != Gbox.green_step[0]:
+                return False
+            else:
+                continue
         else:
-            return False
-
-
-
+            return True
 
 
 class Ybox():
@@ -175,11 +170,15 @@ class Ybox():
         else:
             return False
 
-    def out_game(self):
-        if self.idd == self.yellow_step[0]:
-            return True
+    @staticmethod
+    def out_game(yellows_piece):
+        for i in yellows_piece:
+            if i.idd != Ybox.yellow_step[0]:
+                return False
+            else:
+                continue
         else:
-            return False
+            return True
 
     def move(self):
 
@@ -214,15 +213,19 @@ class Bbox():
         else:
             return False
 
-    def out_game(self):
-        if self.idd == self.blue_step[0]:
-            return True
-        else:
-            return False
-
     def move(self):
 
         return self.blue_step[self.blue_step.index(self.idd) + self.step]
+
+    @staticmethod
+    def out_game(blues_piece):
+        for i in blues_piece:
+            if i.idd != Bbox.blue_step[0]:
+                return False
+            else:
+                continue
+        else:
+            return True
 
     def __del__(self):
         del self
@@ -252,11 +255,15 @@ class Rbox():
         else:
             return False
 
-    def out_game(self):
-        if self.idd == self.red_step[0]:
-            return True
+    @staticmethod
+    def out_game(reds_piece):
+        for i in reds_piece:
+            if i.idd != Rbox.red_step[0]:
+                return False
+            else:
+                continue
         else:
-            return False
+            return True
 
     def move(self):
 
@@ -264,9 +271,6 @@ class Rbox():
 
     def __del__(self):
         del self
-
-
-
 
 # cc = Bbox(2)
 # print(type(cc))
