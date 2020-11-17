@@ -472,3 +472,25 @@ class Board:
                 text=f"TURN:{logic.AddPlayer.turn_player_list_logic[Board.turn_player % len(logic.AddPlayer.turn_player_list_logic)][0]}",
                 fg=color, font="Nazli 17 bold")
             self.lbl_turn.pack()
+
+    @staticmethod
+    def ranking():
+        dic_colors = {"YELLOW": 'yellow', "BLUE": 'blue', "GREEN": 'green', "RED": 'red'}
+        # self.frame_roll.destroy()
+        # self.lbl_turn.configure(text='Ranking')
+        #         # self.lbl_turn.pack()
+        #         # self.lbl_roll.pack_forget()
+        #         # self.label_roll.pack_forget()
+        #         # self.btn_roll.pack_forget()
+        win_ranks = Tk()
+        win_ranks.title('Ranking')
+        win_ranks.resizable(0, 0)
+        win_ranks.geometry('450x400+300+200')
+        # frame_ranking = Frame(win_ranks)
+        c_rank = 0
+        Label(win_ranks,text='Game Finished!',font='Nazli 18 bold').pack()
+        for item in logic.AddPlayer.ranking:
+            c_rank += 1
+            Label(win_ranks, text=f'Rank {c_rank}: ' + str(item[0]), font='Nazli 25 bold', fg=dic_colors[item[1]]).pack()
+
+        win_ranks.mainloop()

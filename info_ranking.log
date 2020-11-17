@@ -46,3 +46,171 @@
 [2020-11-18 00:08:17,802] (logic.py:306) DEBUG: [('hossein', 'RED'), ('ali', 'GREEN'), ('iman', 'YELLOW'), ('asd', 'BLUE')]
 [2020-11-18 00:08:17,802] (logic.py:307) DEBUG: hi deeeeeebuuuuug
 [2020-11-18 00:08:17,802] (logic.py:308) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 00:39:23,994] (logic.py:306) INFO: [('asd', 'GREEN')]
+[2020-11-18 00:39:24,010] (logic.py:307) DEBUG: [('asd', 'GREEN')]
+[2020-11-18 00:39:24,010] (logic.py:308) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 00:39:24,010] (logic.py:309) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 00:39:35,916] (logic.py:306) INFO: [('asd', 'GREEN'), ('asd', 'BLUE')]
+[2020-11-18 00:39:35,916] (logic.py:307) DEBUG: [('asd', 'GREEN'), ('asd', 'BLUE')]
+[2020-11-18 00:39:35,916] (logic.py:308) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 00:39:35,916] (logic.py:309) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 00:39:46,082] (logic.py:306) INFO: [('asd', 'GREEN'), ('asd', 'BLUE'), ('asd', 'RED')]
+[2020-11-18 00:39:46,082] (logic.py:307) DEBUG: [('asd', 'GREEN'), ('asd', 'BLUE'), ('asd', 'RED')]
+[2020-11-18 00:39:46,082] (logic.py:308) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 00:39:46,082] (logic.py:309) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 00:41:46,840] (logic.py:306) INFO: [('asd', 'GREEN'), ('asd', 'BLUE'), ('asd', 'RED'), ('asd', 'BLUE')]
+[2020-11-18 00:41:46,840] (logic.py:307) DEBUG: [('asd', 'GREEN'), ('asd', 'BLUE'), ('asd', 'RED'), ('asd', 'BLUE')]
+[2020-11-18 00:41:46,840] (logic.py:308) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 00:41:46,840] (logic.py:309) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 00:42:03,696] (logic.py:306) INFO: [('asd', 'GREEN'), ('asd', 'BLUE'), ('asd', 'RED'), ('asd', 'BLUE'), ('asd', 'GREEN')]
+[2020-11-18 00:42:03,696] (logic.py:307) DEBUG: [('asd', 'GREEN'), ('asd', 'BLUE'), ('asd', 'RED'), ('asd', 'BLUE'), ('asd', 'GREEN')]
+[2020-11-18 00:42:03,696] (logic.py:308) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 00:42:03,696] (logic.py:309) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 00:42:21,596] (logic.py:306) INFO: [('asd', 'GREEN'), ('asd', 'BLUE'), ('asd', 'RED'), ('asd', 'BLUE'), ('asd', 'GREEN'), ('asd', 'YELLOW')]
+[2020-11-18 00:42:21,596] (logic.py:307) DEBUG: [('asd', 'GREEN'), ('asd', 'BLUE'), ('asd', 'RED'), ('asd', 'BLUE'), ('asd', 'GREEN'), ('asd', 'YELLOW')]
+[2020-11-18 00:42:21,596] (logic.py:308) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 00:42:21,596] (logic.py:309) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 00:42:32,909] (logic.py:306) INFO: [('asd', 'GREEN'), ('asd', 'BLUE'), ('asd', 'RED'), ('asd', 'BLUE'), ('asd', 'GREEN'), ('asd', 'YELLOW'), ('asd', 'RED')]
+[2020-11-18 00:42:32,909] (logic.py:307) DEBUG: [('asd', 'GREEN'), ('asd', 'BLUE'), ('asd', 'RED'), ('asd', 'BLUE'), ('asd', 'GREEN'), ('asd', 'YELLOW'), ('asd', 'RED')]
+[2020-11-18 00:42:32,909] (logic.py:308) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 00:42:32,909] (logic.py:309) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 00:44:26,851] (logic.py:306) INFO: [('asd', 'GREEN'), ('asd', 'BLUE'), ('asd', 'RED'), ('asd', 'BLUE'), ('asd', 'GREEN'), ('asd', 'YELLOW'), ('asd', 'RED'), ('asd', 'YELLOW')]
+[2020-11-18 00:44:26,851] (logic.py:307) DEBUG: [('asd', 'GREEN'), ('asd', 'BLUE'), ('asd', 'RED'), ('asd', 'BLUE'), ('asd', 'GREEN'), ('asd', 'YELLOW'), ('asd', 'RED'), ('asd', 'YELLOW')]
+[2020-11-18 00:44:26,851] (logic.py:308) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 00:44:26,851] (logic.py:309) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 00:44:53,704] (logic.py:306) INFO: [('asd', 'GREEN'), ('asd', 'BLUE'), ('asd', 'RED'), ('asd', 'BLUE'), ('asd', 'GREEN'), ('asd', 'YELLOW'), ('asd', 'RED'), ('asd', 'YELLOW'), ('asd', 'RED')]
+[2020-11-18 00:44:53,704] (logic.py:307) DEBUG: [('asd', 'GREEN'), ('asd', 'BLUE'), ('asd', 'RED'), ('asd', 'BLUE'), ('asd', 'GREEN'), ('asd', 'YELLOW'), ('asd', 'RED'), ('asd', 'YELLOW'), ('asd', 'RED')]
+[2020-11-18 00:44:53,704] (logic.py:308) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 00:44:53,704] (logic.py:309) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 00:45:05,641] (logic.py:306) INFO: [('asd', 'GREEN'), ('asd', 'BLUE'), ('asd', 'RED'), ('asd', 'BLUE'), ('asd', 'GREEN'), ('asd', 'YELLOW'), ('asd', 'RED'), ('asd', 'YELLOW'), ('asd', 'RED'), ('asd', 'BLUE')]
+[2020-11-18 00:45:05,641] (logic.py:307) DEBUG: [('asd', 'GREEN'), ('asd', 'BLUE'), ('asd', 'RED'), ('asd', 'BLUE'), ('asd', 'GREEN'), ('asd', 'YELLOW'), ('asd', 'RED'), ('asd', 'YELLOW'), ('asd', 'RED'), ('asd', 'BLUE')]
+[2020-11-18 00:45:05,641] (logic.py:308) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 00:45:05,641] (logic.py:309) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 00:45:30,282] (logic.py:306) INFO: [('asd', 'GREEN'), ('asd', 'BLUE'), ('asd', 'RED'), ('asd', 'BLUE'), ('asd', 'GREEN'), ('asd', 'YELLOW'), ('asd', 'RED'), ('asd', 'YELLOW'), ('asd', 'RED'), ('asd', 'BLUE'), ('asd', 'GREEN')]
+[2020-11-18 00:45:30,282] (logic.py:307) DEBUG: [('asd', 'GREEN'), ('asd', 'BLUE'), ('asd', 'RED'), ('asd', 'BLUE'), ('asd', 'GREEN'), ('asd', 'YELLOW'), ('asd', 'RED'), ('asd', 'YELLOW'), ('asd', 'RED'), ('asd', 'BLUE'), ('asd', 'GREEN')]
+[2020-11-18 00:45:30,282] (logic.py:308) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 00:45:30,282] (logic.py:309) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 00:50:30,667] (logic.py:306) INFO: [('asd', 'BLUE')]
+[2020-11-18 00:50:30,667] (logic.py:307) DEBUG: [('asd', 'BLUE')]
+[2020-11-18 00:50:30,667] (logic.py:308) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 00:50:30,667] (logic.py:309) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 00:51:01,581] (logic.py:306) INFO: [('asd', 'BLUE'), ('asd', 'RED')]
+[2020-11-18 00:51:01,581] (logic.py:307) DEBUG: [('asd', 'BLUE'), ('asd', 'RED')]
+[2020-11-18 00:51:01,581] (logic.py:308) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 00:51:01,581] (logic.py:309) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 00:51:12,042] (logic.py:306) INFO: [('asd', 'BLUE'), ('asd', 'RED'), ('asd', 'YELLOW')]
+[2020-11-18 00:51:12,042] (logic.py:307) DEBUG: [('asd', 'BLUE'), ('asd', 'RED'), ('asd', 'YELLOW')]
+[2020-11-18 00:51:12,042] (logic.py:308) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 00:51:12,042] (logic.py:309) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 00:51:26,761] (logic.py:306) INFO: [('asd', 'BLUE'), ('asd', 'RED'), ('asd', 'YELLOW'), ('asd', 'GREEN')]
+[2020-11-18 00:51:26,761] (logic.py:307) DEBUG: [('asd', 'BLUE'), ('asd', 'RED'), ('asd', 'YELLOW'), ('asd', 'GREEN')]
+[2020-11-18 00:51:26,761] (logic.py:308) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 00:51:26,761] (logic.py:309) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 00:56:38,301] (logic.py:306) INFO: [('asd', 'RED')]
+[2020-11-18 00:56:38,301] (logic.py:307) DEBUG: [('asd', 'RED')]
+[2020-11-18 00:56:38,301] (logic.py:308) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 00:56:38,301] (logic.py:309) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 00:56:46,379] (logic.py:306) INFO: [('asd', 'RED'), ('asd', 'GREEN')]
+[2020-11-18 00:56:46,379] (logic.py:307) DEBUG: [('asd', 'RED'), ('asd', 'GREEN')]
+[2020-11-18 00:56:46,379] (logic.py:308) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 00:56:46,379] (logic.py:309) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 00:57:04,611] (logic.py:306) INFO: [('asd', 'RED'), ('asd', 'GREEN'), ('asd', 'YELLOW')]
+[2020-11-18 00:57:04,611] (logic.py:307) DEBUG: [('asd', 'RED'), ('asd', 'GREEN'), ('asd', 'YELLOW')]
+[2020-11-18 00:57:04,611] (logic.py:308) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 00:57:04,611] (logic.py:309) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 00:57:16,056] (logic.py:306) INFO: [('asd', 'RED'), ('asd', 'GREEN'), ('asd', 'YELLOW'), ('asd', 'BLUE')]
+[2020-11-18 00:57:16,056] (logic.py:307) DEBUG: [('asd', 'RED'), ('asd', 'GREEN'), ('asd', 'YELLOW'), ('asd', 'BLUE')]
+[2020-11-18 00:57:16,056] (logic.py:308) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 00:57:16,056] (logic.py:309) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 00:59:44,233] (logic.py:310) INFO: [('asd', 'YELLOW')]
+[2020-11-18 00:59:44,233] (logic.py:311) DEBUG: [('asd', 'YELLOW')]
+[2020-11-18 00:59:44,233] (logic.py:312) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 00:59:44,233] (logic.py:313) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 01:00:05,039] (logic.py:310) INFO: [('asd', 'YELLOW'), ('asd', 'GREEN')]
+[2020-11-18 01:00:05,039] (logic.py:311) DEBUG: [('asd', 'YELLOW'), ('asd', 'GREEN')]
+[2020-11-18 01:00:05,039] (logic.py:312) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 01:00:05,039] (logic.py:313) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 01:00:16,086] (logic.py:310) INFO: [('asd', 'YELLOW'), ('asd', 'GREEN'), ('asd', 'RED')]
+[2020-11-18 01:00:16,086] (logic.py:311) DEBUG: [('asd', 'YELLOW'), ('asd', 'GREEN'), ('asd', 'RED')]
+[2020-11-18 01:00:16,086] (logic.py:312) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 01:00:16,086] (logic.py:313) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 01:00:31,658] (logic.py:310) INFO: [('asd', 'YELLOW'), ('asd', 'GREEN'), ('asd', 'RED'), ('asd', 'BLUE')]
+[2020-11-18 01:00:31,658] (logic.py:311) DEBUG: [('asd', 'YELLOW'), ('asd', 'GREEN'), ('asd', 'RED'), ('asd', 'BLUE')]
+[2020-11-18 01:00:31,658] (logic.py:312) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 01:00:31,658] (logic.py:313) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 01:09:26,048] (logic.py:310) INFO: [('asd', 'BLUE')]
+[2020-11-18 01:09:26,063] (logic.py:311) DEBUG: [('asd', 'BLUE')]
+[2020-11-18 01:09:26,063] (logic.py:312) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 01:09:26,063] (logic.py:313) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 01:09:57,634] (logic.py:310) INFO: [('asd', 'BLUE'), ('asd', 'YELLOW')]
+[2020-11-18 01:09:57,634] (logic.py:311) DEBUG: [('asd', 'BLUE'), ('asd', 'YELLOW')]
+[2020-11-18 01:09:57,634] (logic.py:312) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 01:09:57,634] (logic.py:313) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 01:10:12,196] (logic.py:310) INFO: [('asd', 'BLUE'), ('asd', 'YELLOW'), ('asd', 'RED')]
+[2020-11-18 01:10:12,196] (logic.py:311) DEBUG: [('asd', 'BLUE'), ('asd', 'YELLOW'), ('asd', 'RED')]
+[2020-11-18 01:10:12,196] (logic.py:312) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 01:10:12,196] (logic.py:313) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 01:14:09,610] (logic.py:310) INFO: [('asd', 'RED')]
+[2020-11-18 01:14:09,610] (logic.py:311) DEBUG: [('asd', 'RED')]
+[2020-11-18 01:14:09,610] (logic.py:312) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 01:14:09,610] (logic.py:313) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 01:14:25,094] (logic.py:310) INFO: [('asd', 'RED'), ('asd', 'YELLOW')]
+[2020-11-18 01:14:25,094] (logic.py:311) DEBUG: [('asd', 'RED'), ('asd', 'YELLOW')]
+[2020-11-18 01:14:25,094] (logic.py:312) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 01:14:25,094] (logic.py:313) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 01:14:36,376] (logic.py:310) INFO: [('asd', 'RED'), ('asd', 'YELLOW'), ('asd', 'GREEN')]
+[2020-11-18 01:14:36,376] (logic.py:311) DEBUG: [('asd', 'RED'), ('asd', 'YELLOW'), ('asd', 'GREEN')]
+[2020-11-18 01:14:36,391] (logic.py:312) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 01:14:36,391] (logic.py:313) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 01:17:27,773] (logic.py:310) INFO: [('asd', 'YELLOW')]
+[2020-11-18 01:17:27,773] (logic.py:311) DEBUG: [('asd', 'YELLOW')]
+[2020-11-18 01:17:27,773] (logic.py:312) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 01:17:27,773] (logic.py:313) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 01:17:46,485] (logic.py:310) INFO: [('asd', 'YELLOW'), ('asd', 'BLUE')]
+[2020-11-18 01:17:46,485] (logic.py:311) DEBUG: [('asd', 'YELLOW'), ('asd', 'BLUE')]
+[2020-11-18 01:17:46,485] (logic.py:312) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 01:17:46,485] (logic.py:313) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 01:20:04,773] (logic.py:310) INFO: [('iman', 'BLUE')]
+[2020-11-18 01:20:04,773] (logic.py:311) DEBUG: [('iman', 'BLUE')]
+[2020-11-18 01:20:04,773] (logic.py:312) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 01:20:04,773] (logic.py:313) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 01:20:15,648] (logic.py:310) INFO: [('iman', 'BLUE'), ('ali', 'YELLOW')]
+[2020-11-18 01:20:15,648] (logic.py:311) DEBUG: [('iman', 'BLUE'), ('ali', 'YELLOW')]
+[2020-11-18 01:20:15,648] (logic.py:312) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 01:20:15,648] (logic.py:313) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 01:20:27,391] (logic.py:310) INFO: [('iman', 'BLUE'), ('ali', 'YELLOW'), ('asd', 'GREEN')]
+[2020-11-18 01:20:27,391] (logic.py:311) DEBUG: [('iman', 'BLUE'), ('ali', 'YELLOW'), ('asd', 'GREEN')]
+[2020-11-18 01:20:27,391] (logic.py:312) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 01:20:27,391] (logic.py:313) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 01:25:00,039] (logic.py:310) INFO: [('asd', 'GREEN')]
+[2020-11-18 01:25:00,039] (logic.py:311) DEBUG: [('asd', 'GREEN')]
+[2020-11-18 01:25:00,039] (logic.py:312) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 01:25:00,039] (logic.py:313) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 01:25:09,242] (logic.py:310) INFO: [('asd', 'GREEN'), ('asd', 'RED')]
+[2020-11-18 01:25:09,242] (logic.py:311) DEBUG: [('asd', 'GREEN'), ('asd', 'RED')]
+[2020-11-18 01:25:09,242] (logic.py:312) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 01:25:09,242] (logic.py:313) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 01:25:20,752] (logic.py:310) INFO: [('asd', 'GREEN'), ('asd', 'RED'), ('asd', 'BLUE')]
+[2020-11-18 01:25:20,752] (logic.py:311) DEBUG: [('asd', 'GREEN'), ('asd', 'RED'), ('asd', 'BLUE')]
+[2020-11-18 01:25:20,752] (logic.py:312) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 01:25:20,752] (logic.py:313) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 01:25:35,689] (logic.py:310) INFO: [('asd', 'GREEN'), ('asd', 'RED'), ('asd', 'BLUE'), ('asd', 'YELLOW')]
+[2020-11-18 01:25:35,689] (logic.py:311) DEBUG: [('asd', 'GREEN'), ('asd', 'RED'), ('asd', 'BLUE'), ('asd', 'YELLOW')]
+[2020-11-18 01:25:35,689] (logic.py:312) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 01:25:35,689] (logic.py:313) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 01:27:42,081] (logic.py:310) INFO: [('asd', 'BLUE')]
+[2020-11-18 01:27:42,097] (logic.py:311) DEBUG: [('asd', 'BLUE')]
+[2020-11-18 01:27:42,097] (logic.py:312) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 01:27:42,097] (logic.py:313) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 01:27:50,691] (logic.py:310) INFO: [('asd', 'BLUE'), ('asd', 'YELLOW')]
+[2020-11-18 01:27:50,691] (logic.py:311) DEBUG: [('asd', 'BLUE'), ('asd', 'YELLOW')]
+[2020-11-18 01:27:50,691] (logic.py:312) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 01:27:50,691] (logic.py:313) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 01:27:59,863] (logic.py:310) INFO: [('asd', 'BLUE'), ('asd', 'YELLOW'), ('asd', 'RED')]
+[2020-11-18 01:27:59,863] (logic.py:311) DEBUG: [('asd', 'BLUE'), ('asd', 'YELLOW'), ('asd', 'RED')]
+[2020-11-18 01:27:59,863] (logic.py:312) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 01:27:59,863] (logic.py:313) ERROR: hi, gggggggggh AddPlayer.ranking
+[2020-11-18 01:28:16,082] (logic.py:310) INFO: [('asd', 'BLUE'), ('asd', 'YELLOW'), ('asd', 'RED'), ('ali', 'GREEN')]
+[2020-11-18 01:28:16,082] (logic.py:311) DEBUG: [('asd', 'BLUE'), ('asd', 'YELLOW'), ('asd', 'RED'), ('ali', 'GREEN')]
+[2020-11-18 01:28:16,082] (logic.py:312) DEBUG: hi deeeeeebuuuuug
+[2020-11-18 01:28:16,082] (logic.py:313) ERROR: hi, gggggggggh AddPlayer.ranking

@@ -3,6 +3,7 @@
 import random
 import gui
 import logging
+from tkinter import *
 
 AppLogger = logging.getLogger()
 logging.basicConfig(
@@ -11,36 +12,40 @@ logging.basicConfig(
 
 
 def roll_dice(turn_player):
-    x = turn_player % len(AddPlayer.turn_player_list_logic)
-    print(x, turn_player, AddPlayer.turn_player_list_logic)
-    print("nooobat ineh --->>>", AddPlayer.turn_player_list_logic[x])
-    temp_list_players = AddPlayer.turn_player_list_logic.copy()
-    roll_num_out = random.randint(1, 6)
-    if roll_num_out == 6:
-        print("=======>>>>>> gui.Board.turn_player", gui.Board.turn_player)
-
-        gui.Board.turn_player -= 1
-        print("=======>>>>>> gui.Board.turn_player", gui.Board.turn_player)
-        return roll_num_out
+    if not AddPlayer.turn_player_list_logic:
+        gui.Board.ranking()
+        return None
     else:
-        return roll_num_out
-    # for item in temp_list_players:
-    #     if item[1] == "BLUE":
-    #         if (not Bbox.out_game(AddPlayer.blues_piece)):
-    #             counter = 0
-    #             while counter <=2:
-    #                 gui.Board.turn_player -=1
-    #                 counter +=1
-    #                 return random.randint(1,6)
-    #     elif item[1] == "GREEN":
-    #         pass
-    #     elif item[1] == "YELLOW":
-    #         pass
-    #     elif item[1] == "RED":
-    #         pass
+        x = turn_player % len(AddPlayer.turn_player_list_logic)
+        print(x, turn_player, AddPlayer.turn_player_list_logic)
+        print("nooobat ineh --->>>", AddPlayer.turn_player_list_logic[x])
+        temp_list_players = AddPlayer.turn_player_list_logic.copy()
+        roll_num_out = random.randint(1, 6)
+        if roll_num_out == 6:
+            print("=======>>>>>> gui.Board.turn_player", gui.Board.turn_player)
 
-    # print(Rbox.out_game(AddPlayer.reds_piece))
-    # return random.randint(1, 6)
+            gui.Board.turn_player -= 1
+            print("=======>>>>>> gui.Board.turn_player", gui.Board.turn_player)
+            return roll_num_out
+        else:
+            return roll_num_out
+        # for item in temp_list_players:
+        #     if item[1] == "BLUE":
+        #         if (not Bbox.out_game(AddPlayer.blues_piece)):
+        #             counter = 0
+        #             while counter <=2:
+        #                 gui.Board.turn_player -=1
+        #                 counter +=1
+        #                 return random.randint(1,6)
+        #     elif item[1] == "GREEN":
+        #         pass
+        #     elif item[1] == "YELLOW":
+        #         pass
+        #     elif item[1] == "RED":
+        #         pass
+
+        # print(Rbox.out_game(AddPlayer.reds_piece))
+        # return random.randint(1, 6)
 
 
 class AddPlayer:
@@ -310,6 +315,8 @@ def win():
     #     gui.Board.destroy()
     # gui.Board.destroy()
     # win_rank = Tk()
+    if not AddPlayer.turn_player_list_logic:
+        gui.Board.ranking()
 
 
 def logic(id_gui, color, roll_num, p):
