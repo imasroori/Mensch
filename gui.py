@@ -348,69 +348,6 @@ class Board:
                 self.lbl_yellow[0].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
         except TypeError:
             print("------- Click on Proprite Label! -------")
-        # if not ((logic.Bbox.out_game([logic.AddPlayer.blues_piece[0]])) and (
-        #         logic.Gbox.out_game([logic.AddPlayer.greens_piece[0]])) and (
-        #                 logic.Ybox.out_game([logic.AddPlayer.yellows_piece[0]])) and (
-        #                 logic.Rbox.out_game([logic.AddPlayer.reds_piece[1]]))):
-        #     if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
-        #         1] == "BLUE":
-        #
-        #         strt = logic.AddPlayer.blues_piece[0].idd
-        #         id_logic = logic.Bbox.blue_step[logic.Bbox.blue_step.index(strt) + self.roll_num]
-        #
-        #         if id_gui == logic.AddPlayer.blues_piece[0].idd:
-        #             self.lbl_blue[0].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #             logic.AddPlayer.blues_piece[0].idd = id_logic
-        #
-        #     if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
-        #         1] == "GREEN":
-        #         strt = logic.AddPlayer.greens_piece[0].idd
-        #         id_logic = logic.Gbox.green_step[logic.Gbox.green_step.index(strt) + self.roll_num]
-        #
-        #         if id_gui == logic.AddPlayer.greens_piece[0].idd:
-        #             self.lbl_green[0].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #             logic.AddPlayer.greens_piece[0].idd = id_logic
-        #
-        #     if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
-        #         1] == "YELLOW":
-        #         strt = logic.AddPlayer.yellows_piece[0].idd
-        #         id_logic = logic.Ybox.yellow_step[logic.Ybox.yellow_step.index(strt) + self.roll_num]
-        #
-        #         if id_gui == logic.AddPlayer.yellows_piece[0].idd:
-        #             self.lbl_yellow[0].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #             logic.AddPlayer.yellows_piece[0].idd = id_logic
-        #
-        #     if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
-        #         1] == "RED":
-        #         strt = logic.AddPlayer.reds_piece[0].idd
-        #         id_logic = logic.Rbox.red_step[logic.Rbox.red_step.index(strt) + self.roll_num]
-        #
-        #         if id_gui == logic.AddPlayer.reds_piece[0].idd:
-        #             self.lbl_red[0].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #             logic.AddPlayer.reds_piece[0].idd = id_logic
-        #
-        # else:
-        #     if (self.roll_num == 6) and (id_gui == logic.AddPlayer.blues_piece[0].idd):
-        #         id_logic = logic.Bbox.blue_step[1]
-        #         self.lbl_blue[0].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #         logic.AddPlayer.blues_piece[0].idd = id_logic
-        #
-        #     if (self.roll_num == 6) and (id_gui == logic.AddPlayer.greens_piece[0].idd):
-        #         id_logic = logic.Gbox.green_step[1]
-        #         self.lbl_green[0].place(x=80 * (((id_logic + 6) // 7) - 1) + 132,
-        #                                 y=80 * ((id_logic + 6) % 7) + 56)
-        #
-        #         logic.AddPlayer.blues_piece[0].idd = id_logic
-        #
-        #     if (self.roll_num == 6) and (id_gui == logic.AddPlayer.yellows_piece[0].idd):
-        #         id_logic = logic.Ybox.yellow_step[1]
-        #         self.lbl_yellow[0].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #         logic.AddPlayer.yellows_piece[0].idd = id_logic
-        #
-        #     if (self.roll_num == 6) and (id_gui == logic.AddPlayer.reds_piece[0].idd):
-        #         id_logic = logic.Rbox.red_step[1]
-        #         self.lbl_red[0].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #         logic.AddPlayer.reds_piece[0].idd = id_logic
 
         print(f"row is {i}  and col is {j}", "id in gui is: ", id_gui)
 
@@ -442,67 +379,7 @@ class Board:
                 self.lbl_yellow[1].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
         except TypeError:
             print("------- Click on Proprite Label! -------")
-        # if not ((logic.Bbox.out_game([logic.AddPlayer.blues_piece[1]])) and (
-        #         logic.Gbox.out_game([logic.AddPlayer.greens_piece[1]])) and (
-        #                 logic.Ybox.out_game([logic.AddPlayer.yellows_piece[1]])) and (
-        #                 logic.Rbox.out_game([logic.AddPlayer.reds_piece[1]]))):
-        #
-        #     if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
-        #         1] == "BLUE":
-        #         strt = logic.AddPlayer.blues_piece[1].idd
-        #         id_logic = logic.Bbox.blue_step[logic.Bbox.blue_step.index(strt) + self.roll_num]
-        #
-        #         if id_gui == logic.AddPlayer.blues_piece[1].idd:
-        #             self.lbl_blue[1].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #             logic.AddPlayer.blues_piece[1].idd = id_logic
-        #
-        #     if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
-        #         1] == "GREEN":
-        #         strt = logic.AddPlayer.greens_piece[1].idd
-        #         id_logic = logic.Gbox.green_step[logic.Gbox.green_step.index(strt) + self.roll_num]
-        #
-        #         if id_gui == logic.AddPlayer.greens_piece[1].idd:
-        #             self.lbl_green[1].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #             logic.AddPlayer.greens_piece[1].idd = id_logic
-        #
-        #     if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
-        #         1] == "YELLOW":
-        #         strt = logic.AddPlayer.yellows_piece[1].idd
-        #         id_logic = logic.Ybox.yellow_step[logic.Ybox.yellow_step.index(strt) + self.roll_num]
-        #
-        #         if id_gui == logic.AddPlayer.yellows_piece[1].idd:
-        #             self.lbl_yellow[1].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #             logic.AddPlayer.yellows_piece[1].idd = id_logic
-        #
-        #     if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
-        #         1] == "RED":
-        #         strt = logic.AddPlayer.reds_piece[1].idd
-        #         id_logic = logic.Rbox.red_step[logic.Rbox.red_step.index(strt) + self.roll_num]
-        #
-        #         if id_gui == logic.AddPlayer.reds_piece[1].idd:
-        #             self.lbl_red[1].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #             logic.AddPlayer.reds_piece[1].idd = id_logic
-        #
-        # else:
-        #     if (self.roll_num == 6) and (id_gui == logic.AddPlayer.blues_piece[1].idd):
-        #         id_logic = logic.Bbox.blue_step[1]
-        #         self.lbl_blue[1].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #         logic.AddPlayer.blues_piece[1].idd = id_logic
-        #
-        #     if (self.roll_num == 6) and (id_gui == logic.AddPlayer.greens_piece[1].idd):
-        #         id_logic = logic.Gbox.green_step[1]
-        #         self.lbl_green[1].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #         logic.AddPlayer.greens_piece[1].idd = id_logic
-        #
-        #     if (self.roll_num == 6) and (id_gui == logic.AddPlayer.yellows_piece[1].idd):
-        #         id_logic = logic.Ybox.yellow_step[1]
-        #         self.lbl_yellow[1].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #         logic.AddPlayer.yellows_piece[1].idd = id_logic
-        #
-        #     if (self.roll_num == 6) and (id_gui == logic.AddPlayer.reds_piece[1].idd):
-        #         id_logic = logic.Rbox.red_step[1]
-        #         self.lbl_red[1].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #         logic.AddPlayer.reds_piece[1].idd = id_logic
+
         print(f"row is {i}  and col is {j}", "id in gui is: ", id_gui)
 
     def func3(self, event):
@@ -535,67 +412,6 @@ class Board:
                 self.lbl_yellow[2].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
         except TypeError:
             print("------- Click on Proprite Label! -------")
-        # if not ((logic.Bbox.out_game([logic.AddPlayer.blues_piece[2]])) and (
-        #         logic.Gbox.out_game([logic.AddPlayer.greens_piece[2]])) and (
-        #                 logic.Ybox.out_game([logic.AddPlayer.yellows_piece[2]])) and (
-        #                 logic.Rbox.out_game([logic.AddPlayer.reds_piece[2]]))):
-        #
-        #     if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
-        #         1] == "BLUE":
-        #         strt = logic.AddPlayer.blues_piece[2].idd
-        #         id_logic = logic.Bbox.blue_step[logic.Bbox.blue_step.index(strt) + self.roll_num]
-        #
-        #         if id_gui == logic.AddPlayer.blues_piece[2].idd:
-        #             self.lbl_blue[2].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #             logic.AddPlayer.blues_piece[2].idd = id_logic
-        #
-        #     if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
-        #         1] == "GREEN":
-        #         strt = logic.AddPlayer.greens_piece[2].idd
-        #         id_logic = logic.Gbox.green_step[logic.Gbox.green_step.index(strt) + self.roll_num]
-        #
-        #         if id_gui == logic.AddPlayer.greens_piece[2].idd:
-        #             self.lbl_green[2].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #             logic.AddPlayer.greens_piece[2].idd = id_logic
-        #
-        #     if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
-        #         1] == "YELLOW":
-        #         strt = logic.AddPlayer.yellows_piece[2].idd
-        #         id_logic = logic.Ybox.yellow_step[logic.Ybox.yellow_step.index(strt) + self.roll_num]
-        #
-        #         if id_gui == logic.AddPlayer.yellows_piece[2].idd:
-        #             self.lbl_yellow[2].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #             logic.AddPlayer.yellows_piece[2].idd = id_logic
-        #
-        #     if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
-        #         1] == "RED":
-        #         strt = logic.AddPlayer.reds_piece[2].idd
-        #         id_logic = logic.Rbox.red_step[logic.Rbox.red_step.index(strt) + self.roll_num]
-        #
-        #         if id_gui == logic.AddPlayer.reds_piece[2].idd:
-        #             self.lbl_red[2].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #             logic.AddPlayer.reds_piece[2].idd = id_logic
-        #
-        # else:
-        #     if (self.roll_num == 6) and (id_gui == logic.AddPlayer.blues_piece[2].idd):
-        #         id_logic = logic.Bbox.blue_step[1]
-        #         self.lbl_blue[2].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #         logic.AddPlayer.blues_piece[2].idd = id_logic
-        #
-        #     if (self.roll_num == 6) and (id_gui == logic.AddPlayer.greens_piece[2].idd):
-        #         id_logic = logic.Gbox.green_step[1]
-        #         self.lbl_green[2].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #         logic.AddPlayer.greens_piece[2].idd = id_logic
-        #
-        #     if (self.roll_num == 6) and (id_gui == logic.AddPlayer.yellows_piece[2].idd):
-        #         id_logic = logic.Ybox.yellow_step[1]
-        #         self.lbl_yellow[2].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #         logic.AddPlayer.yellows_piece[2].idd = id_logic
-        #
-        #     if (self.roll_num == 6) and (id_gui == logic.AddPlayer.reds_piece[2].idd):
-        #         id_logic = logic.Rbox.red_step[1]
-        #         self.lbl_red[2].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #         logic.AddPlayer.reds_piece[2].idd = id_logic
 
         print(f"row is {i}  and col is {j}", "id in gui is: ", id_gui)
 
@@ -618,8 +434,7 @@ class Board:
             target_id = out[0]
             color = out[1]
 
-
-        # color = logic.logic(id_gui, color_piece, roll_num, p)[1]
+            # color = logic.logic(id_gui, color_piece, roll_num, p)[1]
             if color == "BLUE":
                 self.lbl_blue[3].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
             elif color == "RED":
@@ -630,67 +445,7 @@ class Board:
                 self.lbl_yellow[3].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
         except TypeError:
             print("------- Click on Proprite Label! -------")
-        # if not ((logic.Bbox.out_game([logic.AddPlayer.blues_piece[3]])) and (
-        #         logic.Gbox.out_game([logic.AddPlayer.greens_piece[3]])) and (
-        #         logic.Ybox.out_game([logic.AddPlayer.yellows_piece[3]])) and (
-        #         logic.Rbox.out_game([logic.AddPlayer.reds_piece[3]]))):
-        #
-        #     if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
-        #         1] == "BLUE":
-        #         strt = logic.AddPlayer.blues_piece[3].idd
-        #         id_logic = logic.Bbox.blue_step[logic.Bbox.blue_step.index(strt) + self.roll_num]
-        #
-        #         if id_gui == logic.AddPlayer.blues_piece[3].idd:
-        #             self.lbl_blue[3].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #             logic.AddPlayer.blues_piece[3].idd = id_logic
-        #
-        #     if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
-        #         1] == "GREEN":
-        #         strt = logic.AddPlayer.greens_piece[3].idd
-        #         id_logic = logic.Gbox.green_step[logic.Gbox.green_step.index(strt) + self.roll_num]
-        #
-        #         if id_gui == logic.AddPlayer.greens_piece[3].idd:
-        #             self.lbl_green[3].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #             logic.AddPlayer.greens_piece[3].idd = id_logic
-        #
-        #     if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
-        #         1] == "YELLOW":
-        #         strt = logic.AddPlayer.yellows_piece[3].idd
-        #         id_logic = logic.Ybox.yellow_step[logic.Ybox.yellow_step.index(strt) + self.roll_num]
-        #
-        #         if id_gui == logic.AddPlayer.yellows_piece[3].idd:
-        #             self.lbl_yellow[3].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #             logic.AddPlayer.yellows_piece[3].idd = id_logic
-        #
-        #     if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
-        #         1] == "RED":
-        #         strt = logic.AddPlayer.reds_piece[3].idd
-        #         id_logic = logic.Rbox.red_step[logic.Rbox.red_step.index(strt) + self.roll_num]
-        #
-        #         if id_gui == logic.AddPlayer.reds_piece[3].idd:
-        #             self.lbl_red[3].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #             logic.AddPlayer.reds_piece[3].idd = id_logic
-        # else:
-        #     if (self.roll_num == 6) and (id_gui == logic.AddPlayer.blues_piece[3].idd):
-        #         id_logic = logic.Bbox.blue_step[1]
-        #         self.lbl_blue[3].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #         logic.AddPlayer.blues_piece[3].idd = id_logic
-        #
-        #     if (self.roll_num == 6) and (id_gui == logic.AddPlayer.greens_piece[3].idd):
-        #         id_logic = logic.Gbox.green_step[1]
-        #         self.lbl_green[3].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #         logic.AddPlayer.greens_piece[3].idd = id_logic
-        #
-        #     if (self.roll_num == 6) and (id_gui == logic.AddPlayer.yellows_piece[3].idd):
-        #         id_logic = logic.Ybox.yellow_step[1]
-        #         self.lbl_yellow[3].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #         logic.AddPlayer.yellows_piece[3].idd = id_logic
-        #
-        #     if (self.roll_num == 6) and (id_gui == logic.AddPlayer.reds_piece[3].idd):
-        #         id_logic = logic.Rbox.red_step[1]
-        #         self.lbl_red[3].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
-        #         logic.AddPlayer.reds_piece[3].idd = id_logic
-        #
+
         print(f"row is {i}  and col is {j}", "id in gui is: ", id_gui)
 
     # @staticmethod
@@ -704,7 +459,8 @@ class Board:
     def turn(self):
         dic_colors = {"YELLOW": 'yellow', "BLUE": 'blue', "GREEN": 'green', "RED": 'red'}
         color = dic_colors[
-            logic.AddPlayer.turn_player_list_logic[(Board.turn_player) % len(logic.AddPlayer.turn_player_list_logic)][1]]
+            logic.AddPlayer.turn_player_list_logic[(Board.turn_player) % len(logic.AddPlayer.turn_player_list_logic)][
+                1]]
         if Board.turn_player == -1:
             text_inp = f"Let's Go {logic.AddPlayer.turn_player_list_logic[0][0]}"
 

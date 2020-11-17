@@ -302,15 +302,14 @@ class Rbox():
 
 
 def win():
-
     logging.info(str(AddPlayer.ranking))
     logging.debug(str(AddPlayer.ranking))
     logging.debug("hi deeeeeebuuuuug")
     logging.error("hi, gggggggggh AddPlayer.ranking")
     # if len(AddPlayer.turn_player_list_logic) == 0:
     #     gui.Board.destroy()
-        # gui.Board.destroy()
-        # win_rank = Tk()
+    # gui.Board.destroy()
+    # win_rank = Tk()
 
 
 def logic(id_gui, color, roll_num, p):
@@ -323,7 +322,6 @@ def logic(id_gui, color, roll_num, p):
                 print(type(id_logic))
                 if id_gui == AddPlayer.blues_piece[p].idd:
                     AddPlayer.blues_piece[p].idd = id_logic
-
 
                     if Bbox.at_home(AddPlayer.blues_piece):
                         print("ok bopop6666666666666666666666666666")
@@ -350,15 +348,14 @@ def logic(id_gui, color, roll_num, p):
                 if id_gui == AddPlayer.reds_piece[p].idd:
                     AddPlayer.reds_piece[p].idd = id_logic
 
-
                     if Rbox.at_home(AddPlayer.reds_piece):
                         print("ok bopop6666666666666666666666666666")
                         for item in AddPlayer.turn_player_list_logic:
                             if item[1] == 'RED':
                                 AddPlayer.turn_player_list_logic.remove(item)
                                 AddPlayer.ranking.append(item)
-                                print("lis_1)))))))))",AddPlayer.turn_player_list_logic)
-                                print("lis_2)))))))))",AddPlayer.ranking)
+                                print("lis_1)))))))))", AddPlayer.turn_player_list_logic)
+                                print("lis_2)))))))))", AddPlayer.ranking)
                                 win()
 
                     return id_logic, 'RED'
@@ -383,8 +380,8 @@ def logic(id_gui, color, roll_num, p):
                             if item[1] == 'GREEN':
                                 AddPlayer.turn_player_list_logic.remove(item)
                                 AddPlayer.ranking.append(item)
-                                print("lis_1)))))))))",AddPlayer.turn_player_list_logic)
-                                print("lis_2)))))))))",AddPlayer.ranking)
+                                print("lis_1)))))))))", AddPlayer.turn_player_list_logic)
+                                print("lis_2)))))))))", AddPlayer.ranking)
                                 win()
 
                     return id_logic, 'GREEN'
@@ -409,8 +406,8 @@ def logic(id_gui, color, roll_num, p):
                             if item[1] == 'YELLOW':
                                 AddPlayer.turn_player_list_logic.remove(item)
                                 AddPlayer.ranking.append(item)
-                                print("lis_1)))))))))",AddPlayer.turn_player_list_logic)
-                                print("lis_2)))))))))",AddPlayer.ranking)
+                                print("lis_1)))))))))", AddPlayer.turn_player_list_logic)
+                                print("lis_2)))))))))", AddPlayer.ranking)
                                 win()
 
                     return id_logic, 'YELLOW'
