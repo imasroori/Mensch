@@ -1,30 +1,25 @@
 from tkinter import *
-import random
 from tkinter import ttk
 import logic
-from tkinter import messagebox
-
-
-class AddPlayer:
-    counter_player = 0
-
-    def __init__(self):
-        AddPlayer.counter_player += 1
-
-    @property
-    def num_players(self):
-        return self.counter_player
 
 
 class Board:
+    # turn_player_list = []
+    # player_and_colors = []
+    turn_player = 0
+    reds = []
+    blues = []
+    greens = []
+    yellows = []
+
     def __init__(self, master):
         self.master = master
         self.master.title('Mensch Game')
-        self.master.geometry("950x650+200+20")
+        self.master.geometry("950x650+200+20")  # 200+20
         self.master.resizable(0, 0)
         self.values_color = ['YELLOW', 'GREEN', 'BLUE', 'RED']
-        self.turn_player_list = []
-        self.player_and_colors = []
+        # self.turn_player_list = []
+        # self.player_and_colors = []
 
         self.reds = []
         self.blues = []
@@ -32,18 +27,14 @@ class Board:
         self.yellows = []
 
         self.turn_player = 0
+
         self.menubar = Menu(self.master)
         self.filemenu = Menu(self.menubar, tearoff=0)
-        self.counter_player = 0
-        self.add_player()
-        self.filemenu.add_command(label="Add Player", font="Nazli 14 bold", command=self.add_player)
-        self.filemenu.add_command(label="Start Game", font="Nazli 14 bold", state=DISABLED, command=self.start_game)
-        self.filemenu.add_command(label="New Game", font="Nazli 14 bold", command=self.new_game)
-        self.filemenu.add_command(label="Exit", font="Nazli 14 bold", command=self.exit_game)
-        self.menubar.add_cascade(label="Game", font="Nazli 14 bold", menu=self.filemenu)
         self.helpmenu = Menu(self.menubar, tearoff=0)
-        self.menubar.add_cascade(label="Help", font="Nazli 14 bold", menu=self.helpmenu)
-        self.master.config(menu=self.menubar)
+        self.menu()
+
+        # self.counter_player = 0
+        self.add_player()
 
         self.photo_roll_dice = PhotoImage(file="content/images/roll_dice.png")
         self.photo_blue_player = PhotoImage(file="content/images/BLUE-PLYER.png", width=30, height=45)
@@ -57,157 +48,172 @@ class Board:
         self.frame_right = Frame(self.master, width=750, height=650, bg="red")
         self.frame_right.grid(row=0, column=1)
 
-        self.can_board = Canvas(self.frame_right, width=750, height=660)
+        self.can_board = Canvas(self.frame_right, width=750, height=650)
         self.can_board.pack()
 
-        self.lbl_blue_1 = Label(self.can_board, image=self.photo_blue_player)
-        self.lbl_blue_2 = Label(self.can_board, image=self.photo_blue_player)
-        self.lbl_blue_3 = Label(self.can_board, image=self.photo_blue_player)
-        self.lbl_blue_4 = Label(self.can_board, image=self.photo_blue_player)
-        self.lbl_blue_1.bind("<Button-1>", self.func1)
-        self.lbl_blue_2.bind("<Button-1>", self.func1)
-        self.lbl_blue_3.bind("<Button-1>", self.func1)
-        self.lbl_blue_4.bind("<Button-1>", self.func1)
+        self.frame_panel = Frame(self.frame_left, width=200, height=250)
 
+        self.lbl_red = [Label(self.can_board, image=self.photo_red_player) for _ in range(4)]
+        self.lbl_green = [Label(self.can_board, image=self.photo_green_player) for _ in range(4)]
+        self.lbl_yellow = [Label(self.can_board, image=self.photo_yellow_player) for _ in range(4)]
+        self.lbl_blue = [Label(self.can_board, image=self.photo_blue_player) for _ in range(4)]
+
+        self.lbl_players = Label(self.frame_panel, text="Players", font="Nazli 18 bold")
+
+        self.lbl_users = [Label(self.frame_panel, font="Nazli 18 bold") for _ in range(4)]
+
+        self.widgets()
+        # self.lbl_over = Label(self.frame_right)
+        # self.lbl_over.pack(fill=BOTH)
+        # self.lbl_over.bind("<Button-1>", self.callback)
         self.master.bind("<Button-1>", self.callback)
-        self.lbl_red = Label(self.can_board, image=self.photo_red_player)
+        # self.master.mainloop()
 
-        self.lbl_green = Label(self.can_board, image=self.photo_green_player)
+    def menu(self):
+        self.filemenu.add_command(label="Add Player", font="Nazli 14 bold", command=self.add_player)
+        self.filemenu.add_command(label="Start Game", font="Nazli 14 bold", state=DISABLED, command=self.start_game)
+        self.filemenu.add_command(label="New Game", font="Nazli 14 bold", command=self.new_game)
+        self.filemenu.add_command(label="Exit", font="Nazli 14 bold", command=self.exit_game)
+        self.menubar.add_cascade(label="Game", font="Nazli 14 bold", menu=self.filemenu)
 
-        self.lbl_yellow = Label(self.can_board, image=self.photo_yellow_player)
+        self.menubar.add_cascade(label="Help", font="Nazli 14 bold", menu=self.helpmenu)
+        self.master.config(menu=self.menubar)
 
-        c = 0
+    def widgets(self):
+
+        self.lbl_blue[0].bind("<Button-1>", self.func1)
+        self.lbl_blue[1].bind("<Button-1>", self.func2)
+        self.lbl_blue[2].bind("<Button-1>", self.func3)
+        self.lbl_blue[3].bind("<Button-1>", self.func4)
+
+        self.lbl_red[0].bind("<Button-1>", self.func1)
+        self.lbl_red[1].bind("<Button-1>", self.func2)
+        self.lbl_red[2].bind("<Button-1>", self.func3)
+        self.lbl_red[3].bind("<Button-1>", self.func4)
+
+        self.lbl_green[0].bind("<Button-1>", self.func1)
+        self.lbl_green[1].bind("<Button-1>", self.func2)
+        self.lbl_green[2].bind("<Button-1>", self.func3)
+        self.lbl_green[3].bind("<Button-1>", self.func4)
+
+        self.lbl_yellow[0].bind("<Button-1>", self.func1)
+        self.lbl_yellow[1].bind("<Button-1>", self.func2)
+        self.lbl_yellow[2].bind("<Button-1>", self.func3)
+        self.lbl_yellow[3].bind("<Button-1>", self.func4)
+
+
+
+        temp = 0
+        self.coord = [[], []]
         for i in range(7):
             for j in range(7):
-                c += 1
-                if c in [2, 6, 8, 9, 13, 14, 18, 24, 25, 26, 32, 36, 37, 41, 42, 44, 48]:
+                temp += 1
+                if temp in [2, 6, 8, 9, 13, 14, 18, 24, 25, 26, 32, 36, 37, 41, 42, 44, 48]:
                     continue
                 else:
-                    if c in [1, 3, 11]:
+                    self.coord[0].append((80 * i + 120, 80 * j + 50))
+                    if temp in [1, 3, 11]:
                         self.can_board.create_oval(80 * i + 120, 80 * j + 50, 80 * i + 180, 80 * j + 110,
                                                    fill="#5050ff")
 
-                    elif c in [7, 21, 27]:
+
+                    elif temp in [7, 21, 27]:
                         self.can_board.create_oval(80 * i + 120, 80 * j + 50, 80 * i + 180, 80 * j + 110,
                                                    fill="#50ff50")
 
-                    elif c in [39, 47, 49]:
+                    elif temp in [39, 47, 49]:
                         self.can_board.create_oval(80 * i + 120, 80 * j + 50, 80 * i + 180, 80 * j + 110,
                                                    fill="#ffff50")
 
-                    elif c in [23, 29, 43]:
+                    elif temp in [23, 29, 43]:
                         self.can_board.create_oval(80 * i + 120, 80 * j + 50, 80 * i + 180, 80 * j + 110,
                                                    fill="#ff5050")
                     else:
                         self.can_board.create_oval(80 * i + 120, 80 * j + 50, 80 * i + 180, 80 * j + 110,
                                                    fill="#ffffff")
-
-        self.frame_panel = Frame(self.frame_left, width=200, height=250)
+            self.coord[1].append((80 * i + 120, 0))
         self.frame_panel.place(x=0, y=0)
-        self.lbl_players = Label(self.frame_panel, text="Players", font="Nazli 18 bold")
-        self.lbl_user1 = Label(self.frame_panel, font="Nazli 18 bold")
-
-        self.lbl_user2 = Label(self.frame_panel, font="Nazli 18 bold")
-
-        self.lbl_user3 = Label(self.frame_panel, font="Nazli 18 bold")
-
-        self.lbl_user4 = Label(self.frame_panel, font="Nazli 18 bold")
-
-        self.master.mainloop()
 
     def enter(self):
         try:
             username = self.entry_user.get()
             password = self.entry_pass.get()
             color_selected = self.color_select.get()
-
             with open("content/players_user_pass.txt", 'r') as file1:
                 for line in file1:
                     key, val = line.strip().split()
                     if username == key and val == password:
-                        if self.counter_player <= 3:
+                        if logic.AddPlayer.counter_player <= 3:
                             self.values_color.remove(color_selected)
 
-                        self.turn_player_list.append(color_selected)
-                        print(len(self.turn_player_list))
-                        print(self.turn_player_list)
-                        print(self.values_color)
-                        print("ok")
-                        print(username, '\t', password, '\t', color_selected)
-                        self.player_and_colors.append((username, color_selected))
                         self.lbl_players.pack(side=TOP)
                         if color_selected == "BLUE":
-                            self.blues = [logic.Bbox(idd=logic.Bbox.blue_step[0]) for _ in range(4)]
+                            logic.AddPlayer(username, color_selected)
 
-                            # self.lbl_blue_1.configure(text=len(self.blues), fg="white", font="Nazli 15 bold", compound=CENTER)
-                            self.lbl_blue_1.place(x=80 * ((self.blues[0].idd % 7) - 1) + 132,
-                                                  y=80 * (self.blues[0].idd // 7) + 56)  # x + 12  y+6 132,56
+                            # self.blues = [logic.Bbox(idd=logic.Bbox.blue_step[0]) for _ in range(4)]
 
-                            # self.lbl_blue_2.configure(text=len(self.blues), fg="white", font="Nazli 15 bold", compound=CENTER)
-                            self.lbl_blue_2.place(x=80 * ((self.blues[0].idd % 7) - 1) + 132,
-                                                  y=80 * (self.blues[0].idd // 7) + 56)  # x + 12  y+6 132,56
+                            # x + 12  y+6
+                            [self.lbl_blue[i].place(y=80 * ((logic.Bbox.blue_step[0] + 6) % 7) + 56,
+                                                    x=80 * (((logic.Bbox.blue_step[0] + 6) // 7) - 1) + 132) for i in
+                             range(4)]
 
-                            # self.lbl_blue_3.configure(text=len(self.blues), fg="white", font="Nazli 15 bold", compound=CENTER)
-                            self.lbl_blue_3.place(x=80 * ((self.blues[0].idd % 7) - 1) + 132,
-                                                  y=80 * (self.blues[0].idd // 7) + 56)  # x + 12  y+6 132,56
+                            self.lbl_users[0].config(text=username, fg="blue")
+                            self.lbl_users[0].pack(padx=50, pady=2)
 
-                            # self.lbl_blue_4.configure(text=len(self.blues), fg="white", font="Nazli 15 bold", compound=CENTER)
-                            self.lbl_blue_4.place(x=80 * ((self.blues[0].idd % 7) - 1) + 132,
-                                                  y=80 * (self.blues[0].idd // 7) + 56)  # x + 12  y+6 132,56
-
-                            self.lbl_user1.config(text=username, fg="blue")
-                            self.lbl_user1.pack(padx=50, pady=2)
-
-                            self.counter_player += 1
-                            print("self.counter_player", self.counter_player)
                         if color_selected == "RED":
-                            self.reds = [logic.Rbox() for _ in range(4)]
-                            self.lbl_red.configure(text=4, fg="white", font="Nazli 15 bold", compound=CENTER)
-                            self.lbl_red.place(x=612, y=56)
-                            self.lbl_user2.config(text=username, fg="red")
-                            self.lbl_user2.pack(padx=50, pady=2)
+                            logic.AddPlayer(username, color_selected)
 
-                            self.counter_player += 1
-                            print("self.counter_player", self.counter_player)
+                            self.reds = [logic.Rbox(idd=logic.Rbox.red_step[0]) for _ in range(4)]
+
+                            # x + 12  y+6
+                            [self.lbl_red[i].place(y=80 * ((self.reds[0].idd + 6) % 7) + 56,
+                                                   x=80 * (((self.reds[0].idd + 6) // 7) - 1) + 132) for i in range(4)]
+
+                            self.lbl_users[1].config(text=username, fg="red")
+                            self.lbl_users[1].pack(padx=50, pady=2)
+
                         if color_selected == "GREEN":
-                            self.greens = [logic.Gbox() for _ in range(4)]
-                            self.lbl_green.configure(text=len(self.greens), fg="white", font="Nazli 15 bold",
-                                                     compound=CENTER)
-                            self.lbl_green.place(x=132, y=536)
-                            self.lbl_user3.config(text=username, fg="green")
-                            self.lbl_user3.pack(padx=50, pady=2)
+                            logic.AddPlayer(username, color_selected)
 
-                            self.counter_player += 1
-                            print("self.counter_player", self.counter_player)
+                            self.greens = [logic.Gbox(idd=logic.Gbox.green_step[0]) for _ in range(4)]
+
+                            # x + 12  y+6
+                            [self.lbl_green[i].place(y=80 * ((self.greens[0].idd + 6) % 7) + 56,
+                                                     x=80 * (((self.greens[0].idd + 6) // 7) - 1) + 132) for i in
+                             range(4)]
+
+                            self.lbl_users[2].config(text=username, fg="green")
+                            self.lbl_users[2].pack(padx=50, pady=2)
+
                         if color_selected == "YELLOW":
-                            self.yellows = [logic.Ybox() for _ in range(4)]
-                            self.lbl_yellow.configure(text=len(self.yellows), fg="white", font="Nazli 15 bold",
-                                                      compound=CENTER)
-                            self.lbl_yellow.place(x=612, y=536)
-                            self.lbl_user4.config(text=username, fg="yellow")
-                            self.lbl_user4.pack(padx=50, pady=2)
+                            logic.AddPlayer(username, color_selected)
 
-                            self.counter_player += 1
-                            print("self.counter_player", self.counter_player)
+                            self.yellows = [logic.Ybox(idd=logic.Ybox.yellow_step[0]) for _ in range(4)]
+
+                            # x + 12  y+6
+                            [self.lbl_yellow[i].place(y=80 * ((self.yellows[0].idd + 6) % 7) + 56,
+                                                      x=80 * (((self.yellows[0].idd + 6) // 7) - 1) + 132) for i in
+                             range(4)]
+
+                            self.lbl_users[3].config(text=username, fg="yellow")
+                            self.lbl_users[3].pack(padx=50, pady=2)
+
                         self.cancel()
 
-                        if self.counter_player < 2:
+                        if logic.AddPlayer.counter_player < 2:
                             self.filemenu.entryconfigure(1, state=DISABLED)
-                        if self.counter_player >= 2:
+                        if logic.AddPlayer.counter_player >= 2:
                             self.filemenu.entryconfigure(1, state=NORMAL)
-                        if self.counter_player == 4:
+                        if logic.AddPlayer.counter_player == 4:
                             self.filemenu.entryconfigure(0, state=DISABLED)
-                        print("akhar", self.counter_player)
                         break
                 else:
                     print("UserName Not Found or PassWord Incorrect!")
-                    # messagebox.showerror(title="Error",message="UserName Not Found or PassWord Incorrect!")
                     self.lbl_ok.configure(text="UserName Not Found or PassWord Incorrect!", fg="#ff0000",
                                           font="Nazli 15 bold")
-                    self.lbl_ok.place(x=185, y=210)
+                    self.lbl_ok.place(x=190, y=210)
 
         except ValueError:
-            # messagebox.showerror(title="Error",message="ggggg")
             self.lbl_ok.configure(text="Error!")
             self.lbl_ok.place(x=300, y=225)
 
@@ -216,7 +222,6 @@ class Board:
         password = self.entry_pass.get()
         if username and password:
             with open("content/players_user_pass.txt", 'a') as f:
-                # f.write('\n')
                 f.write(username)
                 f.write('\t')
                 f.write(password)
@@ -234,15 +239,17 @@ class Board:
             self.lbl_ok.place(x=220, y=212)
 
     def cancel(self):
+        if logic.AddPlayer.counter_player >= 2:
+            self.filemenu.entryconfigure(1, state=NORMAL)
         self.login_form.transient(self.master)
         self.login_form.withdraw()
 
     def new_game(self):
         print("Restart Game!")
         self.destroy()
-
+        logic.AddPlayer.counter_player = 0
+        logic.AddPlayer.turn_player_list_logic = []
         board = Tk()
-        print("AddPlayer.counter_player,", AddPlayer.counter_player)
         Board(board)
 
     def exit_game(self):
@@ -256,8 +263,9 @@ class Board:
         self.login_form.title("Login-Mensch")
         self.login_form.geometry("700x400+300+120")
         self.login_form.resizable(0, 0)
-        # self.login_form.lower(self.master)
+
         self.login_form.lift(self.master)
+        self.filemenu.entryconfigure(1, state=DISABLED)
 
         self.label_user = Label(self.login_form, text="UserName", font="Nazli 14 bold").place(x=220, y=100)
 
@@ -267,13 +275,12 @@ class Board:
         self.label_pass = Label(self.login_form, text="PassWord", font="Nazli 14 bold").place(x=220, y=140)
         self.entry_pass = Entry(self.login_form, show="*", fg="blue", selectforeground="red", width=23)
         self.entry_pass.place(x=300, y=148)
-
+        self.lbl_ok = Label(self.login_form)
         self.color_selection = Label(self.login_form, text="ColorPiece", font="Nazli 14 bold").place(x=220,
                                                                                                      y=180)
         self.color_select = ttk.Combobox(self.login_form, textvariable=StringVar())
         self.color_select.config(values=self.values_color, state='readonly')
         self.color_select.place(x=300, y=188)
-        self.lbl_ok = Label(self.login_form)
         self.btn_enter = Button(self.login_form, text="Enter", bg="#bbbbbb", font="Nazli 15 bold",
                                 activebackground="skyblue",
                                 activeforeground="blue", command=self.enter).place(x=220, y=250)
@@ -285,8 +292,9 @@ class Board:
                                  activeforeground="blue", command=self.cancel).place(x=400, y=250)
 
     def start_game(self):
-
-        print(self.turn_player_list)
+        print(self.coord)
+        print("=========    Start Game   ======")
+        print(logic.AddPlayer.turn_player_list_logic)
         self.frame_roll = Frame(self.frame_left, width=200, height=400)
         self.frame_roll.place(x=0, y=250)
         self.filemenu.entryconfigure(0, state=DISABLED)
@@ -303,29 +311,221 @@ class Board:
         self.lbl_roll.pack(pady=15)
 
     def roll_dice(self):
-        self.roll_num = random.randint(1, 6)
+        self.roll_num = logic.roll_dice(self.turn_player)
         self.lbl_roll.configure(text=self.roll_num)
         self.turn_player += 1
         self.turn()
+
         print(f'turn is :{self.turn_player}')
 
     def func1(self, event):
-        step = logic.Bbox.blue_step[logic.Bbox.blue_step.index(self.blues[0].idd) + self.roll_num]
-        self.lbl_blue_1.place(x=80 * (((step+6) //7)-1) + 132, y=80 * ((step+6) % 7) + 56)
-        self.blues[0].idd = step
-        print("iddd is",self.blues[0].idd)
-        self.lbl_blue_2.place(x=80 * (((step+6) //7)-1) + 120, y=80 * ((step+6) % 7) + 50)
-        self.lbl_blue_3.place(x=600, y=300)
-        self.lbl_blue_4.place(x=700, y=300)
-        #### TEST ####
+        # returns the x,y co-ordinates of the mouse pointer relative to the main board.
+        cx = self.master.winfo_pointerx() - self.master.winfo_rootx()
+        cy = self.master.winfo_pointery() - self.master.winfo_rooty()
+        # print("clicked on gggg ", event.x, event.y)
+        print("on widget cx,cy:", cx, cy)
+        # row, col = self.callback(event)
+        j = (cx - 320) // 80
+        i = (cy - 50) // 80
+        id_gui = 7 * j + i + 1
+        if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
+            1] == "BLUE":
+            strt = logic.AddPlayer.blues_piece[0].idd
+            id_logic = logic.Bbox.blue_step[logic.Bbox.blue_step.index(strt) + self.roll_num]
 
-    @staticmethod
-    def callback(event):
+            if id_gui == logic.AddPlayer.blues_piece[0].idd:
+                self.lbl_blue[0].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
+                logic.AddPlayer.blues_piece[0].idd = id_logic
+
+        if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
+            1] == "GREEN":
+            strt = logic.AddPlayer.greens_piece[0].idd
+            id_logic = logic.Gbox.green_step[logic.Gbox.green_step.index(strt) + self.roll_num]
+
+            if id_gui == logic.AddPlayer.greens_piece[0].idd:
+                self.lbl_green[0].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
+                logic.AddPlayer.greens_piece[0].idd = id_logic
+
+        if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
+            1] == "YELLOW":
+            strt = logic.AddPlayer.yellows_piece[0].idd
+            id_logic = logic.Ybox.yellow_step[logic.Ybox.yellow_step.index(strt) + self.roll_num]
+
+            if id_gui == logic.AddPlayer.yellows_piece[0].idd:
+                self.lbl_yellow[0].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
+                logic.AddPlayer.yellows_piece[0].idd = id_logic
+
+        if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
+            1] == "RED":
+            strt = logic.AddPlayer.reds_piece[0].idd
+            id_logic = logic.Rbox.red_step[logic.Rbox.red_step.index(strt) + self.roll_num]
+
+            if id_gui == logic.AddPlayer.reds_piece[0].idd:
+                self.lbl_red[0].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
+                logic.AddPlayer.reds_piece[0].idd = id_logic
+
+
+
+
+        print(f"row is {i}  and col is {j}", "id in gui is: ", id_gui)
+
+
+    def func2(self, event):
+        cx = self.master.winfo_pointerx() - self.master.winfo_rootx()
+        cy = self.master.winfo_pointery() - self.master.winfo_rooty()
+        # print("clicked on gggg ", event.x, event.y)
+        print("on widget cx,cy:", cx, cy)
+        # row, col = self.callback(event)
+        j = (cx - 320) // 80
+        i = (cy - 50) // 80
+        id_gui = 7 * j + i + 1
+
+        if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
+            1] == "BLUE":
+            strt = logic.AddPlayer.blues_piece[1].idd
+            id_logic = logic.Bbox.blue_step[logic.Bbox.blue_step.index(strt) + self.roll_num]
+
+            if id_gui == logic.AddPlayer.blues_piece[1].idd:
+                self.lbl_blue[1].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
+                logic.AddPlayer.blues_piece[1].idd = id_logic
+
+        if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
+            1] == "GREEN":
+            strt = logic.AddPlayer.greens_piece[1].idd
+            id_logic = logic.Gbox.green_step[logic.Gbox.green_step.index(strt) + self.roll_num]
+
+            if id_gui == logic.AddPlayer.greens_piece[1].idd:
+                self.lbl_green[1].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
+                logic.AddPlayer.greens_piece[1].idd = id_logic
+
+        if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
+            1] == "YELLOW":
+            strt = logic.AddPlayer.yellows_piece[1].idd
+            id_logic = logic.Ybox.yellow_step[logic.Ybox.yellow_step.index(strt) + self.roll_num]
+
+            if id_gui == logic.AddPlayer.yellows_piece[1].idd:
+                self.lbl_yellow[1].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
+                logic.AddPlayer.yellows_piece[1].idd = id_logic
+
+        if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
+            1] == "RED":
+            strt = logic.AddPlayer.reds_piece[1].idd
+            id_logic = logic.Rbox.red_step[logic.Rbox.red_step.index(strt) + self.roll_num]
+
+            if id_gui == logic.AddPlayer.reds_piece[1].idd:
+                self.lbl_red[1].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
+                logic.AddPlayer.reds_piece[1].idd = id_logic
+        print(f"row is {i}  and col is {j}", "id in gui is: ", id_gui)
+
+    def func3(self, event):
+        cx = self.master.winfo_pointerx() - self.master.winfo_rootx()
+        cy = self.master.winfo_pointery() - self.master.winfo_rooty()
+        # print("clicked on gggg ", event.x, event.y)
+        print("on widget cx,cy:", cx, cy)
+        # row, col = self.callback(event)
+        j = (cx - 320) // 80
+        i = (cy - 50) // 80
+        id_gui = 7 * j + i + 1
+
+        if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
+            1] == "BLUE":
+            strt = logic.AddPlayer.blues_piece[2].idd
+            id_logic = logic.Bbox.blue_step[logic.Bbox.blue_step.index(strt) + self.roll_num]
+
+            if id_gui == logic.AddPlayer.blues_piece[2].idd:
+                self.lbl_blue[2].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
+                logic.AddPlayer.blues_piece[2].idd = id_logic
+
+        if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
+            1] == "GREEN":
+            strt = logic.AddPlayer.greens_piece[2].idd
+            id_logic = logic.Gbox.green_step[logic.Gbox.green_step.index(strt) + self.roll_num]
+
+            if id_gui == logic.AddPlayer.greens_piece[2].idd:
+                self.lbl_green[2].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
+                logic.AddPlayer.greens_piece[2].idd = id_logic
+
+        if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
+            1] == "YELLOW":
+            strt = logic.AddPlayer.yellows_piece[2].idd
+            id_logic = logic.Ybox.yellow_step[logic.Ybox.yellow_step.index(strt) + self.roll_num]
+
+            if id_gui == logic.AddPlayer.yellows_piece[2].idd:
+                self.lbl_yellow[2].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
+                logic.AddPlayer.yellows_piece[2].idd = id_logic
+
+        if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
+            1] == "RED":
+            strt = logic.AddPlayer.reds_piece[2].idd
+            id_logic = logic.Rbox.red_step[logic.Rbox.red_step.index(strt) + self.roll_num]
+
+            if id_gui == logic.AddPlayer.reds_piece[2].idd:
+                self.lbl_red[2].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
+                logic.AddPlayer.reds_piece[2].idd = id_logic
+
+        print(f"row is {i}  and col is {j}", "id in gui is: ", id_gui)
+
+    def func4(self, event):
+        cx = self.master.winfo_pointerx() - self.master.winfo_rootx()
+        cy = self.master.winfo_pointery() - self.master.winfo_rooty()
+        # print("clicked on gggg ", event.x, event.y)
+        print("on widget cx,cy:", cx, cy)
+        # row, col = self.callback(event)
+        j = (cx - 320) // 80
+        i = (cy - 50) // 80
+        id_gui = 7 * j + i + 1
+
+        if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
+            1] == "BLUE":
+            strt = logic.AddPlayer.blues_piece[3].idd
+            id_logic = logic.Bbox.blue_step[logic.Bbox.blue_step.index(strt) + self.roll_num]
+
+            if id_gui == logic.AddPlayer.blues_piece[3].idd:
+                self.lbl_blue[3].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
+                logic.AddPlayer.blues_piece[3].idd = id_logic
+
+        if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
+            1] == "GREEN":
+            strt = logic.AddPlayer.greens_piece[3].idd
+            id_logic = logic.Gbox.green_step[logic.Gbox.green_step.index(strt) + self.roll_num]
+
+            if id_gui == logic.AddPlayer.greens_piece[3].idd:
+                self.lbl_green[3].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
+                logic.AddPlayer.greens_piece[3].idd = id_logic
+
+        if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
+            1] == "YELLOW":
+            strt = logic.AddPlayer.yellows_piece[3].idd
+            id_logic = logic.Ybox.yellow_step[logic.Ybox.yellow_step.index(strt) + self.roll_num]
+
+            if id_gui == logic.AddPlayer.yellows_piece[3].idd:
+                self.lbl_yellow[3].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
+                logic.AddPlayer.yellows_piece[3].idd = id_logic
+
+        if logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][
+            1] == "RED":
+            strt = logic.AddPlayer.reds_piece[3].idd
+            id_logic = logic.Rbox.red_step[logic.Rbox.red_step.index(strt) + self.roll_num]
+
+            if id_gui == logic.AddPlayer.reds_piece[3].idd:
+                self.lbl_red[3].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
+                logic.AddPlayer.reds_piece[3].idd = id_logic
+
+        print(f"row is {i}  and col is {j}", "id in gui is: ", id_gui)
+
+    # @staticmethod
+    def callback(self, event):
+        cx = self.master.winfo_pointerx() - self.master.winfo_rootx()  # This formula returns the x,y co-ordinates of the mouse pointer relative to the board.
+        cy = self.master.winfo_pointery() - self.master.winfo_rooty()
         print("clicked on ", event.x, event.y)
+        print("cx,cy is:", cx, cy)
+        # return event.x, event.y
 
     def turn(self):
         dic_colors = {"YELLOW": 'yellow', "BLUE": 'blue', "GREEN": 'green', "RED": 'red'}
-        color = dic_colors[self.player_and_colors[self.turn_player % len(self.turn_player_list)][1]]
+        color = dic_colors[
+            logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][1]]
         self.lbl_turn.configure(
-            text=f"TURN: {self.player_and_colors[self.turn_player % len(self.turn_player_list)][0]}", fg=color)
+            text=f"TURN: {logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][0]}",
+            fg=color)
         self.lbl_turn.pack()
