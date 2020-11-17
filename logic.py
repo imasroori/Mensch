@@ -8,24 +8,12 @@ def roll_dice(turn_player):
     x = turn_player % len(AddPlayer.turn_player_list_logic)
     print(x, turn_player, AddPlayer.turn_player_list_logic)
     print("nooobat ineh --->>>", AddPlayer.turn_player_list_logic[x])
-    # if AddPlayer.turn_player_list_logic[x][1] == 'GREEN':
-    #     for i in AddPlayer.greens_piece:
-    #         print(i.idd,"idididididididididid")
-    #         # print(type(i))
-    #         if i.idd == Gbox.green_step[0]:
-    #             return [random.randint(1,6)]
-    #         elif i.idd != Gbox.green_step[-1]:
-    #             i = None
-    #         else:
-    #             return random.randint(1,6)
-    # if AddPlayer.turn_player_list_logic[x][1] == 'BLUE':
-    #     flag = [0,0,0,0]
-    #     for i in range(4):
-    #         if AddPlayer.blues_piece[i].in_game():
-    #             flag[i] = 1
-    #     if flag:
-    #         roll = random.randint(1,6)
+    temp_list_players = AddPlayer.turn_player_list_logic.copy()
+    # if AddPlayer.turn_player_list_logic[x][1] == "BLUE":
+    #     if Bbox.out_game(AddPlayer.blues_piece):
+    #         gui.Board.lbl_roll.configure(text=random.randint(20,26))
     #
+
     #         return random.randint(1,6)
     #
     #
@@ -64,6 +52,8 @@ class AddPlayer:
 
     def __init__(self, user, color):
         AddPlayer.counter_player += 1
+        print('self.counter_player in AddPlayer is: ', self.counter_player, "AddPlayer.counter_player in AddPlayer is:",
+              AddPlayer.counter_player)
         self.user = user
         self.color = color
         self.turn_player_list_logic.append((self.user, self.color))
@@ -86,6 +76,18 @@ class AddPlayer:
         if self.color == 'YELLOW':
             AddPlayer.yellows_piece = [Ybox() for _ in range(4)]
             print("YELLOW Pieces Created!")
+            print(f'{self.user} have 4 piece with color {self.color}')
+
+        if self.color == 'RED':
+            AddPlayer.reds_piece = [Rbox() for _ in range(4)]
+            print(f'{self.user} have 4 piece with color {self.color}')
+        if self.color == 'GREEN':
+            AddPlayer.greens_piece = [Gbox() for _ in range(4)]
+            print(f'{self.user} have 4 piece with color {self.color}')
+        if self.color == 'YELLOW':
+            AddPlayer.yellows_piece = [Ybox() for _ in range(4)]
+            print(f'{self.user} have 4 piece with color {self.color}')
+
 
         print(f"Counter of users is: {AddPlayer.counter_player}")
 
@@ -213,10 +215,6 @@ class Bbox():
         else:
             return False
 
-    def move(self):
-
-        return self.blue_step[self.blue_step.index(self.idd) + self.step]
-
     @staticmethod
     def out_game(blues_piece):
         for i in blues_piece:
@@ -226,6 +224,9 @@ class Bbox():
                 continue
         else:
             return True
+
+    def move(self):
+        return self.blue_step[self.blue_step.index(self.idd) + self.step]
 
     def __del__(self):
         del self
