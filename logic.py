@@ -6,8 +6,12 @@ import gui
 
 def roll_dice(turn_player):
     x = turn_player % len(AddPlayer.turn_player_list_logic)
-    print(x,turn_player,AddPlayer.turn_player_list_logic)
+    print(x, turn_player, AddPlayer.turn_player_list_logic)
     print("nooobat ineh --->>>", AddPlayer.turn_player_list_logic[x])
+    temp_list_players = AddPlayer.turn_player_list_logic.copy()
+    if AddPlayer.turn_player_list_logic[x][1] == "BLUE":
+        if Bbox.out_game(AddPlayer.blues_piece):
+
     # if AddPlayer.turn_player_list_logic[x][1] == 'GREEN':
     #     for i in AddPlayer.greens_piece:
     #         print(i.idd,"idididididididididid")
@@ -54,7 +58,6 @@ def roll_dice(turn_player):
     return random.randint(1, 6)
 
 
-
 class AddPlayer:
     counter_player = 0
     turn_player_list_logic = []
@@ -66,7 +69,8 @@ class AddPlayer:
     def __init__(self, user, color):
         # self.counter_player += 1
         AddPlayer.counter_player += 1
-        print(self.counter_player, "jjjjjjj", AddPlayer.counter_player)
+        print('self.counter_player in AddPlayer is: ', self.counter_player, "AddPlayer.counter_player in AddPlayer is:",
+              AddPlayer.counter_player)
         self.user = user
         self.color = color
         self.turn_player_list_logic.append((self.user, self.color))
@@ -77,21 +81,17 @@ class AddPlayer:
     def init_instance(self):
         if self.color == 'BLUE':
             AddPlayer.blues_piece = [Bbox() for _ in range(4)]
-            print("Huuuuuuu", *[AddPlayer.blues_piece[i].idd for i in range(4)])
+            print(f'{self.user} have 4 piece with color {self.color}')
 
         if self.color == 'RED':
             AddPlayer.reds_piece = [Rbox() for _ in range(4)]
-            print("Huuuuuuu", *[AddPlayer.reds_piece[i].idd for i in range(4)])
+            print(f'{self.user} have 4 piece with color {self.color}')
         if self.color == 'GREEN':
             AddPlayer.greens_piece = [Gbox() for _ in range(4)]
-            print("Huuuuuuu", *[AddPlayer.greens_piece[i].idd for i in range(4)])
-            print("bbbbbbbb", *[AddPlayer.greens_piece[i].state for i in range(4)])
-            print("Hnnnnnnn", *[AddPlayer.greens_piece[i].at_home() for i in range(4)])
-            print("typessss", [type(AddPlayer.greens_piece[i]) for i in range(4)])
-            [print(AddPlayer.greens_piece[i]) for i in range(4)]
+            print(f'{self.user} have 4 piece with color {self.color}')
         if self.color == 'YELLOW':
             AddPlayer.yellows_piece = [Ybox() for _ in range(4)]
-            print("Huuuuuuu", *[AddPlayer.yellows_piece[i].idd for i in range(4)])
+            print(f'{self.user} have 4 piece with color {self.color}')
 
         print(AddPlayer.counter_player)
 
@@ -144,9 +144,6 @@ class Gbox():
             return True
         else:
             return False
-
-
-
 
 
 class Ybox():
@@ -264,9 +261,6 @@ class Rbox():
 
     def __del__(self):
         del self
-
-
-
 
 # cc = Bbox(2)
 # print(type(cc))

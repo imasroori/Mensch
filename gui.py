@@ -26,7 +26,7 @@ class Board:
         self.greens = []
         self.yellows = []
 
-        self.turn_player = 0
+        self.turn_player = -1
 
         self.menubar = Menu(self.master)
         self.filemenu = Menu(self.menubar, tearoff=0)
@@ -52,6 +52,8 @@ class Board:
         self.can_board.pack()
 
         self.frame_panel = Frame(self.frame_left, width=200, height=250)
+        self.frame_roll = Frame(self.frame_left, width=200, height=400)
+        self.lbl_turn = Label(self.frame_roll)
 
         self.lbl_red = [Label(self.can_board, image=self.photo_red_player) for _ in range(4)]
         self.lbl_green = [Label(self.can_board, image=self.photo_green_player) for _ in range(4)]
@@ -101,17 +103,13 @@ class Board:
         self.lbl_yellow[2].bind("<Button-1>", self.func3)
         self.lbl_yellow[3].bind("<Button-1>", self.func4)
 
-
-
         temp = 0
-        self.coord = [[], []]
         for i in range(7):
             for j in range(7):
                 temp += 1
                 if temp in [2, 6, 8, 9, 13, 14, 18, 24, 25, 26, 32, 36, 37, 41, 42, 44, 48]:
                     continue
                 else:
-                    self.coord[0].append((80 * i + 120, 80 * j + 50))
                     if temp in [1, 3, 11]:
                         self.can_board.create_oval(80 * i + 120, 80 * j + 50, 80 * i + 180, 80 * j + 110,
                                                    fill="#5050ff")
@@ -131,7 +129,6 @@ class Board:
                     else:
                         self.can_board.create_oval(80 * i + 120, 80 * j + 50, 80 * i + 180, 80 * j + 110,
                                                    fill="#ffffff")
-            self.coord[1].append((80 * i + 120, 0))
         self.frame_panel.place(x=0, y=0)
 
     def enter(self):
@@ -245,7 +242,7 @@ class Board:
         self.login_form.withdraw()
 
     def new_game(self):
-        print("Restart Game!")
+        print("!=======   Restart Game   =======!")
         self.destroy()
         logic.AddPlayer.counter_player = 0
         logic.AddPlayer.turn_player_list_logic = []
@@ -253,6 +250,7 @@ class Board:
         Board(board)
 
     def exit_game(self):
+        print("!=======   Exit Game   =======!")
         self.destroy()
 
     def destroy(self):
@@ -292,14 +290,14 @@ class Board:
                                  activeforeground="blue", command=self.cancel).place(x=400, y=250)
 
     def start_game(self):
-        print(self.coord)
-        print("=========    Start Game   ======")
+        print("!=======   Start Game   =======!")
         print(logic.AddPlayer.turn_player_list_logic)
-        self.frame_roll = Frame(self.frame_left, width=200, height=400)
+        # self.frame_roll = Frame(self.frame_left, width=200, height=400)
+        # self.lbl_turn = Label(self.frame_roll)
         self.frame_roll.place(x=0, y=250)
         self.filemenu.entryconfigure(0, state=DISABLED)
         self.filemenu.entryconfigure(1, state=DISABLED)
-        self.lbl_turn = Label(self.frame_roll, text="turn: BLUE", font="Nazli 20 bold")
+
         self.turn()
         # self.lbl_turn.pack()
         self.label_roll = Label(self.frame_roll, image=self.photo_roll_dice, width=150, height=150)
@@ -311,9 +309,9 @@ class Board:
         self.lbl_roll.pack(pady=15)
 
     def roll_dice(self):
+        self.turn_player += 1
         self.roll_num = logic.roll_dice(self.turn_player)
         self.lbl_roll.configure(text=self.roll_num)
-        self.turn_player += 1
         self.turn()
 
         print(f'turn is :{self.turn_player}')
@@ -364,11 +362,7 @@ class Board:
                 self.lbl_red[0].place(x=80 * (((id_logic + 6) // 7) - 1) + 132, y=80 * ((id_logic + 6) % 7) + 56)
                 logic.AddPlayer.reds_piece[0].idd = id_logic
 
-
-
-
         print(f"row is {i}  and col is {j}", "id in gui is: ", id_gui)
-
 
     def func2(self, event):
         cx = self.master.winfo_pointerx() - self.master.winfo_rootx()
@@ -524,8 +518,14 @@ class Board:
     def turn(self):
         dic_colors = {"YELLOW": 'yellow', "BLUE": 'blue', "GREEN": 'green', "RED": 'red'}
         color = dic_colors[
-            logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][1]]
-        self.lbl_turn.configure(
-            text=f"TURN: {logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][0]}",
-            fg=color)
-        self.lbl_turn.pack()
+            logic.AddPlayer.turn_player_list_logic[(self.turn_player) % len(logic.AddPlayer.turn_player_list_logic)][1]]
+        if self.turn_player == -1:
+            text_inp = f"Let's Go {logic.AddPlayer.turn_player_list_logic[0][0]}"
+
+            self.lbl_turn.configure(text=text_inp, font="Nazli 17 bold",fg=dic_colors[logic.AddPlayer.turn_player_list_logic[0][1]])
+            self.lbl_turn.pack()
+        else:
+            self.lbl_turn.configure(
+                text=f"TURN: {logic.AddPlayer.turn_player_list_logic[self.turn_player % len(logic.AddPlayer.turn_player_list_logic)][0]}",
+                fg=color,font="Nazli 20 bold")
+            self.lbl_turn.pack()
