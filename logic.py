@@ -1,6 +1,8 @@
 # 1st Project on MaktabSharif,Maktab42, Code by Iman Masroori
 """ In this Module logic of game are designed"""
 import random
+from os import kill
+
 import gui
 import logging
 from tkinter import *
@@ -13,7 +15,9 @@ logging.basicConfig(
 
 def roll_dice(turn_player):
     if not AddPlayer.turn_player_list_logic:
-        gui.Board.ranking()
+        info_rank = Tk()
+        App_Rank = gui.RankInfo(info_rank)
+        info_rank.mainloop()
         return None
     else:
         x = turn_player % len(AddPlayer.turn_player_list_logic)
@@ -21,14 +25,18 @@ def roll_dice(turn_player):
         print("nooobat ineh --->>>", AddPlayer.turn_player_list_logic[x])
         temp_list_players = AddPlayer.turn_player_list_logic.copy()
         roll_num_out = random.randint(1, 6)
-        if roll_num_out == 6:
-            print("=======>>>>>> gui.Board.turn_player", gui.Board.turn_player)
 
-            gui.Board.turn_player -= 1
-            print("=======>>>>>> gui.Board.turn_player", gui.Board.turn_player)
-            return roll_num_out
-        else:
-            return roll_num_out
+        return roll_num_out
+        # if roll_num_out == 6:
+        #     print("=======>>>>>> gui.Board.turn_player", gui.Board.turn_player)
+        #     gui.Board.turn_player = gui.Board.turn_player
+        #     # gui.Board.turn_player -= 1
+        #     print("=======>>>>>> gui.Board.turn_player", gui.Board.turn_player)
+        #     return roll_num_out
+        # else:
+        #     gui.Board.turn_player += 1
+        #     return roll_num_out
+
         # for item in temp_list_players:
         #     if item[1] == "BLUE":
         #         if (not Bbox.out_game(AddPlayer.blues_piece)):
@@ -99,15 +107,6 @@ class AddPlayer:
 
         print(f"Counter of users is: {AddPlayer.counter_player}")
 
-    # @property
-    # def show_users(self):
-    #     # print((self.user, self.color))
-    #     return (self.user, self.color)
-
-    @property
-    def num_players(self):
-        return self.counter_player
-
 
 class Piece:
     def __init__(self):
@@ -142,13 +141,6 @@ class Gbox():
         else:
             return flag_at_home
 
-    def in_game(self):
-
-        if self.idd != self.green_step[0] and self.idd != self.green_step[-1]:
-            return True
-        else:
-            return False
-
     @staticmethod
     def out_game(greens_piece):
         for i in greens_piece:
@@ -158,6 +150,10 @@ class Gbox():
                 continue
         else:
             return True
+
+    @staticmethod
+    def move_check(piece):
+        return piece in Gbox.green_step[1:len(Gbox.green_step) - 1]
 
 
 class Ybox():
@@ -186,12 +182,6 @@ class Ybox():
         else:
             return flag_at_home
 
-    def in_game(self):
-        if self.idd != self.yellow_step[0] and self.idd != self.yellow_step[-1]:
-            return True
-        else:
-            return False
-
     @staticmethod
     def out_game(yellows_piece):
         for i in yellows_piece:
@@ -202,12 +192,9 @@ class Ybox():
         else:
             return True
 
-    def move(self):
-
-        return self.yellow_step[self.yellow_step.index(self.idd) + self.step]
-
-    def __del__(self):
-        del self
+    @staticmethod
+    def move_check(piece):
+        return piece in Ybox.yellow_step[1:len(Ybox.yellow_step) - 1]
 
 
 class Bbox():
@@ -235,12 +222,6 @@ class Bbox():
         else:
             return flag_at_home
 
-    def in_game(self):
-        if self.idd != self.blue_step[0] and self.idd != self.blue_step[-1]:
-            return True
-        else:
-            return False
-
     @staticmethod
     def out_game(blues_piece):
         for i in blues_piece:
@@ -251,11 +232,9 @@ class Bbox():
         else:
             return True
 
-    def move(self):
-        return self.blue_step[self.blue_step.index(self.idd) + self.step]
-
-    def __del__(self):
-        del self
+    @staticmethod
+    def move_check(piece):
+        return piece in Bbox.blue_step[1:len(Bbox.blue_step) - 1]
 
 
 class Rbox():
@@ -282,12 +261,6 @@ class Rbox():
         else:
             return flag_at_home
 
-    def in_game(self):
-        if self.idd != self.red_step[0] and self.idd != self.red_step[-1]:
-            return True
-        else:
-            return False
-
     @staticmethod
     def out_game(reds_piece):
         for i in reds_piece:
@@ -298,132 +271,204 @@ class Rbox():
         else:
             return True
 
-    def move(self):
-
-        return self.red_step[self.red_step.index(self.idd) + self.step]
-
-    def __del__(self):
-        del self
+    @staticmethod
+    def move_check(piece):
+        return piece in Rbox.red_step[1:len(Rbox.red_step) - 1]
 
 
 def win():
-    logging.info(str(AddPlayer.ranking))
-    logging.debug(str(AddPlayer.ranking))
-    logging.debug("hi deeeeeebuuuuug")
-    logging.error("hi, gggggggggh AddPlayer.ranking")
-    # if len(AddPlayer.turn_player_list_logic) == 0:
-    #     gui.Board.destroy()
-    # gui.Board.destroy()
-    # win_rank = Tk()
     if not AddPlayer.turn_player_list_logic:
-        gui.Board.ranking()
+        logging.info(str(AddPlayer.ranking))
+
+        info_rank = Tk()
+        App_Rank = gui.RankInfo(info_rank)
+        info_rank.mainloop()
+
+
+def killer_piece(id_logic, color):
+    copy_list_player = AddPlayer.turn_player_list_logic.copy()
+    for item in copy_list_player:
+        if item[1] == color:
+            copy_list_player.remove(item)
+    killed_pieces = []
+    for i in copy_list_player:
+        if i[1] == 'BLUE':
+            for j in AddPlayer.blues_piece:
+                if j.idd == id_logic:
+                    killed_pieces.append((AddPlayer.blues_piece.index(j), 'BLUE'))
+                    print("->1  ", j.idd, id_logic)
+                    print("->1 kill mishe")
+        elif i[1] == 'RED':
+            for j in AddPlayer.reds_piece:
+                if j.idd == id_logic:
+                    killed_pieces.append((AddPlayer.reds_piece.index(j), 'RED'))
+                    print("->2  ", j.idd, id_logic)
+                    print("->2  kill mishe")
+        elif i[1] == 'YELLOW':
+            for j in AddPlayer.yellows_piece:
+                if j.idd == id_logic:
+                    killed_pieces.append((AddPlayer.yellows_piece.index(j), 'YELLOW'))
+                    print("->3  ", j.idd, id_logic)
+                    print("->3  kill mishe")
+        elif i[1] == 'GREEN':
+            for j in AddPlayer.greens_piece:
+                if j.idd == id_logic:
+                    killed_pieces.append((AddPlayer.greens_piece.index(j), 'GREEN'))
+                    print("->4  ", j.idd, id_logic)
+                    print("->4  kill mishe")
+    print("!!!!!!!  killed_pieces", killed_pieces)
+    return killed_pieces
 
 
 def logic(id_gui, color, roll_num, p):
     try:
         if color == "BLUE":
 
-            if (not Bbox.out_game(AddPlayer.blues_piece)) and (id_gui != Bbox.blue_step[0]):
+            if (Bbox.move_check(id_gui)) and (id_gui == AddPlayer.blues_piece[p].idd):
                 strt = AddPlayer.blues_piece[p].idd
                 id_logic = Bbox.blue_step[Bbox.blue_step.index(strt) + roll_num]
-                print(type(id_logic))
-                if id_gui == AddPlayer.blues_piece[p].idd:
-                    AddPlayer.blues_piece[p].idd = id_logic
 
-                    if Bbox.at_home(AddPlayer.blues_piece):
-                        print("ok bopop6666666666666666666666666666")
-                        for item in AddPlayer.turn_player_list_logic:
-                            if item[1] == 'BLUE':
-                                AddPlayer.turn_player_list_logic.remove(item)
-                                AddPlayer.ranking.append(item)
-                                print("lis_1)))))))))", AddPlayer.turn_player_list_logic)
-                                print("lis_2)))))))))", AddPlayer.ranking)
-                                win()
+                kill_id_color = killer_piece(id_logic, color)
 
-                    return id_logic, 'BLUE'
-            else:
-                if (roll_num == 6) and (id_gui == AddPlayer.blues_piece[p].idd):
-                    id_logic = Bbox.blue_step[1]
-                    AddPlayer.blues_piece[p].idd = id_logic
-                    return id_logic, 'BLUE'
+                AddPlayer.blues_piece[p].idd = id_logic
+
+                # kill_id = kill_id_color[0]
+                # kill_color = kill_id_color[1]
+                kill_id = None
+                kill_color = None
+
+                if Bbox.at_home(AddPlayer.blues_piece):
+                    for item in AddPlayer.turn_player_list_logic:
+                        if item[1] == 'BLUE':
+                            AddPlayer.turn_player_list_logic.remove(item)
+                            AddPlayer.ranking.append(item)
+
+                return id_logic, 'BLUE', kill_id_color
+
+            elif (not Bbox.move_check(id_gui)) and (id_gui == Bbox.blue_step[0]) and (
+                    id_gui == AddPlayer.blues_piece[p].idd) and (roll_num == 6):
+                id_logic = Bbox.blue_step[1]
+
+                kill_id_color = killer_piece(id_logic, color)
+
+                AddPlayer.blues_piece[p].idd = id_logic
+
+                # kill_id = kill_id_color[0]
+                # kill_color = kill_id_color[1]
+                kill_id = None
+                kill_color = None
+                return id_logic, 'BLUE', kill_id_color
 
         elif color == "RED":
-            if (not Rbox.out_game(AddPlayer.reds_piece)) and (id_gui != Rbox.red_step[0]):
+
+            if (Rbox.move_check(id_gui)) and (id_gui == AddPlayer.reds_piece[p].idd):
                 strt = AddPlayer.reds_piece[p].idd
                 id_logic = Rbox.red_step[Rbox.red_step.index(strt) + roll_num]
-                print(type(id_logic))
-                if id_gui == AddPlayer.reds_piece[p].idd:
-                    AddPlayer.reds_piece[p].idd = id_logic
 
-                    if Rbox.at_home(AddPlayer.reds_piece):
-                        print("ok bopop6666666666666666666666666666")
-                        for item in AddPlayer.turn_player_list_logic:
-                            if item[1] == 'RED':
-                                AddPlayer.turn_player_list_logic.remove(item)
-                                AddPlayer.ranking.append(item)
-                                print("lis_1)))))))))", AddPlayer.turn_player_list_logic)
-                                print("lis_2)))))))))", AddPlayer.ranking)
-                                win()
+                kill_id_color = killer_piece(id_logic, color)
 
-                    return id_logic, 'RED'
-            else:
-                if (roll_num == 6) and (id_gui == AddPlayer.reds_piece[p].idd):
-                    id_logic = Rbox.red_step[1]
-                    AddPlayer.reds_piece[p].idd = id_logic
+                AddPlayer.reds_piece[p].idd = id_logic
 
-                    return id_logic, 'RED'
+                # kill_id = kill_id_color[0]
+                # kill_color = kill_id_color[1]
+                kill_id = None
+                kill_color = None
+
+                if Rbox.at_home(AddPlayer.reds_piece):
+                    for item in AddPlayer.turn_player_list_logic:
+                        if item[1] == 'RED':
+                            AddPlayer.turn_player_list_logic.remove(item)
+                            AddPlayer.ranking.append(item)
+
+                return id_logic, 'RED', kill_id_color
+
+            elif (not Rbox.move_check(id_gui)) and (id_gui == Rbox.red_step[0]) and (
+                    id_gui == AddPlayer.reds_piece[p].idd) and (roll_num == 6):
+                id_logic = Rbox.red_step[1]
+
+                kill_id_color = killer_piece(id_logic, color)
+
+                AddPlayer.reds_piece[p].idd = id_logic
+
+                # kill_id = kill_id_color[0]
+                # kill_color = kill_id_color[1]
+                kill_id = None
+                kill_color = None
+                return id_logic, 'RED', kill_id_color
 
         elif color == "GREEN":
-            if (not Gbox.out_game(AddPlayer.greens_piece)) and (id_gui != Gbox.green_step[0]):
+
+            if (Gbox.move_check(id_gui)) and (id_gui == AddPlayer.greens_piece[p].idd):
                 strt = AddPlayer.greens_piece[p].idd
                 id_logic = Gbox.green_step[Gbox.green_step.index(strt) + roll_num]
-                print(type(id_logic))
-                if id_gui == AddPlayer.greens_piece[p].idd:
-                    AddPlayer.greens_piece[p].idd = id_logic
 
-                    if Gbox.at_home(AddPlayer.greens_piece):
-                        print("ok bopop6666666666666666666666666666")
-                        for item in AddPlayer.turn_player_list_logic:
-                            if item[1] == 'GREEN':
-                                AddPlayer.turn_player_list_logic.remove(item)
-                                AddPlayer.ranking.append(item)
-                                print("lis_1)))))))))", AddPlayer.turn_player_list_logic)
-                                print("lis_2)))))))))", AddPlayer.ranking)
-                                win()
+                kill_id_color = killer_piece(id_logic, color)
 
-                    return id_logic, 'GREEN'
-            else:
-                if (roll_num == 6) and (id_gui == AddPlayer.greens_piece[p].idd):
-                    id_logic = Gbox.green_step[1]
-                    AddPlayer.greens_piece[p].idd = id_logic
+                AddPlayer.greens_piece[p].idd = id_logic
 
-                    return id_logic, 'GREEN'
+                # kill_id = kill_id_color[0]
+                # kill_color = kill_id_color[1]
+                kill_id = None
+                kill_color = None
+
+                if Gbox.at_home(AddPlayer.greens_piece):
+                    for item in AddPlayer.turn_player_list_logic:
+                        if item[1] == 'GREEN':
+                            AddPlayer.turn_player_list_logic.remove(item)
+                            AddPlayer.ranking.append(item)
+
+                return id_logic, 'GREEN', kill_id_color
+
+            elif (not Gbox.move_check(id_gui)) and (id_gui == Gbox.green_step[0]) and (
+                    id_gui == AddPlayer.greens_piece[p].idd) and (roll_num == 6):
+                id_logic = Gbox.green_step[1]
+
+                kill_id_color = killer_piece(id_logic, color)
+
+                AddPlayer.greens_piece[p].idd = id_logic
+
+                # kill_id = kill_id_color[0]
+                # kill_color = kill_id_color[1]
+
+                kill_id = None
+                kill_color = None
+                return id_logic, 'GREEN', kill_id_color
 
         elif color == "YELLOW":
-            if (not Ybox.out_game(AddPlayer.yellows_piece)) and (id_gui != Ybox.yellow_step[0]):
+
+            if (Ybox.move_check(id_gui)) and (id_gui == AddPlayer.yellows_piece[p].idd):
                 strt = AddPlayer.yellows_piece[p].idd
                 id_logic = Ybox.yellow_step[Ybox.yellow_step.index(strt) + roll_num]
-                print(type(id_logic))
-                if id_gui == AddPlayer.yellows_piece[p].idd:
-                    AddPlayer.yellows_piece[p].idd = id_logic
 
-                    if Ybox.at_home(AddPlayer.yellows_piece):
-                        print("ok bopop6666666666666666666666666666")
-                        for item in AddPlayer.turn_player_list_logic:
-                            if item[1] == 'YELLOW':
-                                AddPlayer.turn_player_list_logic.remove(item)
-                                AddPlayer.ranking.append(item)
-                                print("lis_1)))))))))", AddPlayer.turn_player_list_logic)
-                                print("lis_2)))))))))", AddPlayer.ranking)
-                                win()
+                kill_id_color = killer_piece(id_logic, color)
 
-                    return id_logic, 'YELLOW'
-            else:
-                if (roll_num == 6) and (id_gui == AddPlayer.yellows_piece[p].idd):
-                    id_logic = Ybox.yellow_step[1]
-                    AddPlayer.yellows_piece[p].idd = id_logic
+                AddPlayer.yellows_piece[p].idd = id_logic
 
-                    return id_logic, 'YELLOW'
+                # kill_id = kill_id_color[0]
+                # kill_color = kill_id_color[1]
+                kill_id = None
+                kill_color = None
+                if Ybox.at_home(AddPlayer.yellows_piece):
+                    for item in AddPlayer.turn_player_list_logic:
+                        if item[1] == 'YELLOW':
+                            AddPlayer.turn_player_list_logic.remove(item)
+                            AddPlayer.ranking.append(item)
+
+                return id_logic, 'YELLOW', kill_id_color
+
+            elif (not Ybox.move_check(id_gui)) and (id_gui == Ybox.yellow_step[0]) and (
+                    id_gui == AddPlayer.yellows_piece[p].idd) and (roll_num == 6):
+                id_logic = Ybox.yellow_step[1]
+
+                kill_id_color = killer_piece(id_logic, color)
+
+                AddPlayer.yellows_piece[p].idd = id_logic
+
+                # kill_id = kill_id_color[0]
+                # kill_color = kill_id_color[1]
+                kill_id = None
+                kill_color = None
+                return id_logic, 'YELLOW', kill_id_color
 
     except IndexError:
         print("---------- Not Permissiom For This Move! ----------")
