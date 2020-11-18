@@ -4,14 +4,13 @@ import logic
 
 
 class Board:
-    # turn_player_list = []
-    # player_and_colors = []
     roll_num = 0
     turn_player = -1
     reds = []
     blues = []
     greens = []
     yellows = []
+    dic_colors = {"YELLOW": 'yellow', "BLUE": 'blue', "GREEN": 'green', "RED": 'red'}
 
     def __init__(self, master):
         self.master = master
@@ -19,15 +18,11 @@ class Board:
         self.master.geometry("950x650+200+20")  # 200+20
         self.master.resizable(0, 0)
         self.values_color = ['YELLOW', 'GREEN', 'BLUE', 'RED']
-        # self.turn_player_list = []
-        # self.player_and_colors = []
 
         self.reds = []
         self.blues = []
         self.greens = []
         self.yellows = []
-
-        # self.turn_player = -1
 
         self.menubar = Menu(self.master)
         self.filemenu = Menu(self.menubar, tearoff=0)
@@ -55,6 +50,9 @@ class Board:
         self.frame_panel = Frame(self.frame_left, width=200, height=250)
         self.frame_roll = Frame(self.frame_left, width=200, height=400)
         self.lbl_turn = Label(self.frame_roll)
+        self.label_roll = Label(self.frame_roll)
+        self.lbl_roll = Label(self.frame_roll)
+        self.btn_roll = Button(self.frame_roll)
 
         self.lbl_red = [Label(self.can_board, image=self.photo_red_player) for _ in range(4)]
         self.lbl_green = [Label(self.can_board, image=self.photo_green_player) for _ in range(4)]
@@ -67,9 +65,6 @@ class Board:
 
         self.widgets()
 
-        # self.lbl_over = Label(self.frame_right)
-        # self.lbl_over.pack(fill=BOTH)
-        # self.lbl_over.bind("<Button-1>", self.callback)
         self.master.bind("<Button-1>", self.callback)
         # self.master.mainloop()
 
@@ -115,7 +110,6 @@ class Board:
                     if temp in [1, 3, 11]:
                         self.can_board.create_oval(80 * i + 120, 80 * j + 50, 80 * i + 180, 80 * j + 110,
                                                    fill="#5050ff")
-
 
                     elif temp in [7, 21, 27]:
                         self.can_board.create_oval(80 * i + 120, 80 * j + 50, 80 * i + 180, 80 * j + 110,
@@ -176,7 +170,6 @@ class Board:
 
                             self.greens = [logic.Gbox(idd=logic.Gbox.green_step[0]) for _ in range(4)]
 
-                            # x + 12  y+6
                             [self.lbl_green[i].place(y=80 * ((self.greens[0].idd + 6) % 7) + 56,
                                                      x=80 * (((self.greens[0].idd + 6) // 7) - 1) + 132) for i in
                              range(4)]
@@ -213,7 +206,7 @@ class Board:
                     self.lbl_ok.place(x=190, y=210)
 
         except ValueError:
-            self.lbl_ok.configure(text="Error!")
+            self.lbl_ok.configure(text="Error!", fg="#ff0000", font="Nazli 15 bold")
             self.lbl_ok.place(x=300, y=225)
 
     def register(self):
@@ -310,34 +303,30 @@ class Board:
 
         self.turn()
 
-        # self.lbl_turn.configure(text=f"Start {logic.AddPlayer.turn_player_list_logic[0][1]}")
-        # self.lbl_turn.pack()
-
         self.label_roll = Label(self.frame_roll, image=self.photo_roll_dice, width=150, height=150)
         self.label_roll.pack(pady=10, padx=10)
         self.btn_roll = Button(self.frame_roll, text="Roll", bg="skyblue", bd=4, font="Nazli 14 bold", width=8,
                                command=self.roll_dice)
         self.btn_roll.pack()
-        self.lbl_roll = Label(self.frame_roll, font="Nazli 35 bold", fg="blue")
+        self.lbl_roll = Label(self.frame_roll, font="Nazli 35 bold", fg="#333333")
         self.lbl_roll.pack(pady=15)
 
     def roll_dice(self):
         if logic.AddPlayer.turn_player_list_logic:
             self.roll_num = logic.roll_dice(Board.turn_player)
+
             Board.turn_player += 1
-            self.lbl_roll.configure(text=self.roll_num)
             self.turn()
+
+            self.lbl_roll.configure(text=self.roll_num)
+
         else:
             self.btn_roll.configure(state=DISABLED)
-        print(f'turn is :{Board.turn_player}')
 
     def func1(self, event):
-        print("aaaaaaaaaaaaaaaaaaaaaa")
         # returns the x,y co-ordinates of the mouse pointer relative to the main board.
         cx = self.master.winfo_pointerx() - self.master.winfo_rootx()
         cy = self.master.winfo_pointery() - self.master.winfo_rooty()
-
-        print("on widget cx,cy:", cx, cy)
 
         j = (cx - 320) // 80
         i = (cy - 50) // 80
@@ -351,8 +340,6 @@ class Board:
             target_id = out[0]
             color = out[1]
 
-            # killed_piece = out[2]
-            # killed_color = out[3]
             killed_id_color = out[2]
 
             if color == "BLUE":
@@ -371,6 +358,7 @@ class Board:
                 if killed_id_color:
                     for ii in killed_id_color:
                         self.killed(ii[0], ii[1])
+
                 self.lbl_green[0].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
 
             elif color == "YELLOW":
@@ -379,17 +367,15 @@ class Board:
                         self.killed(ii[0], ii[1])
                 self.lbl_yellow[0].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
             logic.win()
-            # self.turn()
+
         except TypeError:
             print("------- Click on Proprite Label! -------")
 
         print(f"row is {i}  and col is {j}", "id in gui is: ", id_gui)
 
     def func2(self, event):
-        print("bbbbbbbbbbbbbbbbbbbb")
         cx = self.master.winfo_pointerx() - self.master.winfo_rootx()
         cy = self.master.winfo_pointery() - self.master.winfo_rooty()
-        print("on widget cx,cy:", cx, cy)
         j = (cx - 320) // 80
         i = (cy - 50) // 80
         id_gui = 7 * j + i + 1
@@ -403,8 +389,6 @@ class Board:
             target_id = out[0]
             color = out[1]
             killed_id_color = out[2]
-            # killed_piece = out[2]
-            # killed_color = out[3]
 
             if color == "BLUE":
                 if killed_id_color:
@@ -423,11 +407,12 @@ class Board:
                     for ii in killed_id_color:
                         self.killed(ii[0], ii[1])
                 self.lbl_green[1].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
-
+                # self.lbl_green[1].configure(text=logic.Gbox.overlap( lis=logic.AddPlayer.greens_piece),
+                #                             compound=CENTER)
             elif color == "YELLOW":
                 if killed_id_color:
                     for ii in killed_id_color:
-                        self.killed(ii[0],ii[1])
+                        self.killed(ii[0], ii[1])
                 self.lbl_yellow[1].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
             # self.turn()
             logic.win()
@@ -437,12 +422,9 @@ class Board:
         print(f"row is {i}  and col is {j}", "id in gui is: ", id_gui)
 
     def func3(self, event):
-        print("ccccccccccccccccccccc")
         cx = self.master.winfo_pointerx() - self.master.winfo_rootx()
         cy = self.master.winfo_pointery() - self.master.winfo_rooty()
-        # print("clicked on gggg ", event.x, event.y)
-        print("on widget cx,cy:", cx, cy)
-        # row, col = self.callback(event)
+
         j = (cx - 320) // 80
         i = (cy - 50) // 80
         id_gui = 7 * j + i + 1
@@ -457,8 +439,6 @@ class Board:
             color = out[1]
 
             killed_id_color = out[2]
-            # killed_piece
-            # killed_color = out[3]
 
             if color == "BLUE":
                 if killed_id_color:
@@ -477,13 +457,14 @@ class Board:
                     for ii in killed_id_color:
                         self.killed(ii[0], ii[1])
                 self.lbl_green[2].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
+                # self.lbl_green[2].configure(text=logic.Gbox.overlap( lis=logic.AddPlayer.greens_piece),
+                #                             compound=CENTER)
 
             elif color == "YELLOW":
                 if killed_id_color:
                     for ii in killed_id_color:
                         self.killed(ii[0], ii[1])
                 self.lbl_yellow[2].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
-            # self.turn()
             logic.win()
         except TypeError:
             print("------- Click on Proprite Label! -------")
@@ -492,10 +473,9 @@ class Board:
 
     def func4(self, event):
         try:
-            print("dddddddddddddddddddddddddd")
             cx = self.master.winfo_pointerx() - self.master.winfo_rootx()
             cy = self.master.winfo_pointery() - self.master.winfo_rooty()
-            print("on widget cx,cy:", cx, cy)
+
             j = (cx - 320) // 80
             i = (cy - 50) // 80
             id_gui = 7 * j + i + 1
@@ -510,72 +490,64 @@ class Board:
             target_id = out[0]
             color = out[1]
             killed_id_color = out[2]
-            # killed_piece = out[2]
-            # killed_color = out[3]
 
-            # color = logic.logic(id_gui, color_piece, roll_num, p)[1]
             if color == "BLUE":
                 if killed_id_color:
-                    print('<<<<<<<<<<<<<<<<<', killed_id_color)
                     for ii in killed_id_color:
                         self.killed(ii[0], ii[1])
                 self.lbl_blue[3].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
 
             elif color == "RED":
                 if killed_id_color:
-                    print('<<<<<<<<<<<<<<<<<', killed_id_color)
                     for ii in killed_id_color:
                         self.killed(ii[0], ii[1])
                 self.lbl_red[3].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
 
             elif color == "GREEN":
                 if killed_id_color:
-                    print('<<<<<<<<<<<<<<<<<', killed_id_color)
                     for ii in killed_id_color:
                         self.killed(ii[0], ii[1])
                 self.lbl_green[3].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
+                # self.lbl_green[3].configure(text=logic.Gbox.overlap( lis=logic.AddPlayer.greens_piece),
+                #                             compound=CENTER)
 
             elif color == "YELLOW":
                 if killed_id_color:
-                    print('<<<<<<<<<<<<<<<<<', killed_id_color)
                     for ii in killed_id_color:
                         self.killed(ii[0], ii[1])
                 self.lbl_yellow[3].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
             # self.turn()
             logic.win()
+            print(f"row is {i}  and col is {j}", "id in gui is: ", id_gui)
         except TypeError:
             print("------- Click on Proprite Label! -------")
         except ZeroDivisionError:
             print("!=======  Game Ended!  =======!")
 
-        print(f"row is {i}  and col is {j}", "id in gui is: ", id_gui)
-
-    # @staticmethod
     def callback(self, event):
-        cx = self.master.winfo_pointerx() - self.master.winfo_rootx()  # This formula returns the x,y co-ordinates of the mouse pointer relative to the board.
+        # This formula returns the x,y co-ordinates of the mouse pointer relative to the board.
+        cx = self.master.winfo_pointerx() - self.master.winfo_rootx()
         cy = self.master.winfo_pointery() - self.master.winfo_rooty()
-        print("clicked on ", event.x, event.y)
-        print("cx,cy is:", cx, cy)
+        print("clicked on widget ", event.x, event.y)
+        print("clicked on Board :", cx, cy)
         # return event.x, event.y
 
     def turn(self):
-        dic_colors = {"YELLOW": 'yellow', "BLUE": 'blue', "GREEN": 'green', "RED": 'red'}
-        color = dic_colors[
+        color = Board.dic_colors[
             logic.AddPlayer.turn_player_list_logic[(Board.turn_player) % len(logic.AddPlayer.turn_player_list_logic)][
                 1]]
         if Board.turn_player == -1:
             text_inp = f"Let's Go {logic.AddPlayer.turn_player_list_logic[0][0]}"
 
             self.lbl_turn.configure(text=text_inp, font="Nazli 17 bold",
-                                    fg=dic_colors[logic.AddPlayer.turn_player_list_logic[0][1]])
+                                    fg=Board.dic_colors[logic.AddPlayer.turn_player_list_logic[0][1]])
             self.lbl_turn.pack()
+
         else:
             self.lbl_turn.configure(
                 text=f"TURN:{logic.AddPlayer.turn_player_list_logic[(Board.turn_player % len(logic.AddPlayer.turn_player_list_logic))][0]}",
                 fg=color, font="Nazli 17 bold")
             self.lbl_turn.pack()
-
-    # def ranking(self):
 
     def killed(self, killed_piece, killed_color):
 
@@ -598,8 +570,8 @@ class Board:
 
 
 class RankInfo:
-    dic_colors = {"YELLOW": 'yellow', "BLUE": 'blue', "GREEN": 'green', "RED": 'red'}
     c_rank = 0
+    dic_colors = {"YELLOW": 'yellow', "BLUE": 'blue', "GREEN": 'green', "RED": 'red'}
 
     def __init__(self, root):
         self.win_ranks = root

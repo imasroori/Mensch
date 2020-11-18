@@ -1,8 +1,6 @@
 # 1st Project on MaktabSharif,Maktab42, Code by Iman Masroori
 """ In this Module logic of game are designed"""
 import random
-from os import kill
-
 import gui
 import logging
 from tkinter import *
@@ -21,39 +19,9 @@ def roll_dice(turn_player):
         return None
     else:
         x = turn_player % len(AddPlayer.turn_player_list_logic)
-        print(x, turn_player, AddPlayer.turn_player_list_logic)
-        print("nooobat ineh --->>>", AddPlayer.turn_player_list_logic[x])
-        temp_list_players = AddPlayer.turn_player_list_logic.copy()
         roll_num_out = random.randint(1, 6)
 
         return roll_num_out
-        # if roll_num_out == 6:
-        #     print("=======>>>>>> gui.Board.turn_player", gui.Board.turn_player)
-        #     gui.Board.turn_player = gui.Board.turn_player
-        #     # gui.Board.turn_player -= 1
-        #     print("=======>>>>>> gui.Board.turn_player", gui.Board.turn_player)
-        #     return roll_num_out
-        # else:
-        #     gui.Board.turn_player += 1
-        #     return roll_num_out
-
-        # for item in temp_list_players:
-        #     if item[1] == "BLUE":
-        #         if (not Bbox.out_game(AddPlayer.blues_piece)):
-        #             counter = 0
-        #             while counter <=2:
-        #                 gui.Board.turn_player -=1
-        #                 counter +=1
-        #                 return random.randint(1,6)
-        #     elif item[1] == "GREEN":
-        #         pass
-        #     elif item[1] == "YELLOW":
-        #         pass
-        #     elif item[1] == "RED":
-        #         pass
-
-        # print(Rbox.out_game(AddPlayer.reds_piece))
-        # return random.randint(1, 6)
 
 
 class AddPlayer:
@@ -93,39 +61,17 @@ class AddPlayer:
         if self.color == 'YELLOW':
             AddPlayer.yellows_piece = [Ybox() for _ in range(4)]
             print("YELLOW Pieces Created!")
-            print(f'{self.user} have 4 piece with color {self.color}')
-
-        if self.color == 'RED':
-            AddPlayer.reds_piece = [Rbox() for _ in range(4)]
-            print(f'{self.user} have 4 piece with color {self.color}')
-        if self.color == 'GREEN':
-            AddPlayer.greens_piece = [Gbox() for _ in range(4)]
-            print(f'{self.user} have 4 piece with color {self.color}')
-        if self.color == 'YELLOW':
-            AddPlayer.yellows_piece = [Ybox() for _ in range(4)]
-            print(f'{self.user} have 4 piece with color {self.color}')
 
         print(f"Counter of users is: {AddPlayer.counter_player}")
 
 
-class Piece:
-    def __init__(self):
-        pass
-
-    def move(self, start, end, length):
-        pass
-
-
-class Gbox():
+class Gbox:
     green_step = [7, 21, 20, 19, 12, 5, 4, 3, 10, 17, 16, 15, 22, 29, 30, 31, 38, 45, 46, 47, 40, 33, 34, 35, 28, 27]
     counter_all_piece = 0
 
-    def __init__(self, idd=green_step[0], step=None, state=None):
+    def __init__(self, idd=green_step[0]):
         self.idd = idd
-        self.step = step
-        self.state = state
         self.counter_all_piece += 1
-
         if self.counter_all_piece > 4:
             raise Exception("no extra")
 
@@ -155,17 +101,24 @@ class Gbox():
     def move_check(piece):
         return piece in Gbox.green_step[1:len(Gbox.green_step) - 1]
 
+    @staticmethod
+    def overlap(lis=None):
+        if lis is None:
+            lis = AddPlayer.greens_piece
+        c_lap = 1
+        for i in range(1, len(lis)):
+            if AddPlayer.greens_piece[i].idd == AddPlayer.greens_piece[i - 1].idd:
+                c_lap += 1
+        return c_lap
 
-class Ybox():
+
+class Ybox:
     yellow_step = [49, 47, 40, 33, 34, 35, 28, 21, 20, 19, 12, 5, 4, 3, 10, 17, 16, 15, 22, 29, 30, 31, 38, 45, 46, 39]
 
     counter_all_piece = 0
 
-    def __init__(self, idd=yellow_step[0], step=None, state=None):
-
+    def __init__(self, idd=yellow_step[0]):
         self.idd = idd
-        self.step = step
-        self.state = state
         self.counter_all_piece += 1
         if self.counter_all_piece > 4:
             raise Exception("no extra")
@@ -197,15 +150,12 @@ class Ybox():
         return piece in Ybox.yellow_step[1:len(Ybox.yellow_step) - 1]
 
 
-class Bbox():
+class Bbox:
     blue_step = [1, 3, 10, 17, 16, 15, 22, 29, 30, 31, 38, 45, 46, 47, 40, 33, 34, 35, 28, 21, 20, 19, 12, 5, 4, 11]
     counter_all_piece = 0
 
-    def __init__(self, idd=blue_step[0], step=None, state=None):
-
+    def __init__(self, idd=blue_step[0]):
         self.idd = idd
-        self.step = step
-        self.state = state
         self.counter_all_piece += 1
         if self.counter_all_piece > 4:
             raise Exception("no extra")
@@ -241,10 +191,8 @@ class Rbox():
     red_step = [43, 29, 30, 31, 38, 45, 46, 47, 40, 33, 34, 35, 28, 21, 20, 19, 12, 5, 4, 3, 10, 17, 16, 15, 22, 23]
     counter_all_piece = 0
 
-    def __init__(self, idd=red_step[0], step=None, state=None):
+    def __init__(self, idd=red_step[0]):
         self.idd = idd
-        self.step = step
-        self.state = state
         self.counter_all_piece += 1
         if self.counter_all_piece > 4:
             raise Exception("no extra")
@@ -296,27 +244,23 @@ def killer_piece(id_logic, color):
             for j in AddPlayer.blues_piece:
                 if j.idd == id_logic:
                     killed_pieces.append((AddPlayer.blues_piece.index(j), 'BLUE'))
-                    print("->1  ", j.idd, id_logic)
-                    print("->1 kill mishe")
+
         elif i[1] == 'RED':
             for j in AddPlayer.reds_piece:
                 if j.idd == id_logic:
                     killed_pieces.append((AddPlayer.reds_piece.index(j), 'RED'))
-                    print("->2  ", j.idd, id_logic)
-                    print("->2  kill mishe")
+
         elif i[1] == 'YELLOW':
             for j in AddPlayer.yellows_piece:
                 if j.idd == id_logic:
                     killed_pieces.append((AddPlayer.yellows_piece.index(j), 'YELLOW'))
-                    print("->3  ", j.idd, id_logic)
-                    print("->3  kill mishe")
+
         elif i[1] == 'GREEN':
             for j in AddPlayer.greens_piece:
                 if j.idd == id_logic:
                     killed_pieces.append((AddPlayer.greens_piece.index(j), 'GREEN'))
-                    print("->4  ", j.idd, id_logic)
-                    print("->4  kill mishe")
-    print("!!!!!!!  killed_pieces", killed_pieces)
+
+    print("===>> killed_pieces", killed_pieces)
     return killed_pieces
 
 
@@ -331,11 +275,6 @@ def logic(id_gui, color, roll_num, p):
                 kill_id_color = killer_piece(id_logic, color)
 
                 AddPlayer.blues_piece[p].idd = id_logic
-
-                # kill_id = kill_id_color[0]
-                # kill_color = kill_id_color[1]
-                kill_id = None
-                kill_color = None
 
                 if Bbox.at_home(AddPlayer.blues_piece):
                     for item in AddPlayer.turn_player_list_logic:
@@ -353,10 +292,6 @@ def logic(id_gui, color, roll_num, p):
 
                 AddPlayer.blues_piece[p].idd = id_logic
 
-                # kill_id = kill_id_color[0]
-                # kill_color = kill_id_color[1]
-                kill_id = None
-                kill_color = None
                 return id_logic, 'BLUE', kill_id_color
 
         elif color == "RED":
@@ -368,11 +303,6 @@ def logic(id_gui, color, roll_num, p):
                 kill_id_color = killer_piece(id_logic, color)
 
                 AddPlayer.reds_piece[p].idd = id_logic
-
-                # kill_id = kill_id_color[0]
-                # kill_color = kill_id_color[1]
-                kill_id = None
-                kill_color = None
 
                 if Rbox.at_home(AddPlayer.reds_piece):
                     for item in AddPlayer.turn_player_list_logic:
@@ -390,10 +320,6 @@ def logic(id_gui, color, roll_num, p):
 
                 AddPlayer.reds_piece[p].idd = id_logic
 
-                # kill_id = kill_id_color[0]
-                # kill_color = kill_id_color[1]
-                kill_id = None
-                kill_color = None
                 return id_logic, 'RED', kill_id_color
 
         elif color == "GREEN":
@@ -405,11 +331,6 @@ def logic(id_gui, color, roll_num, p):
                 kill_id_color = killer_piece(id_logic, color)
 
                 AddPlayer.greens_piece[p].idd = id_logic
-
-                # kill_id = kill_id_color[0]
-                # kill_color = kill_id_color[1]
-                kill_id = None
-                kill_color = None
 
                 if Gbox.at_home(AddPlayer.greens_piece):
                     for item in AddPlayer.turn_player_list_logic:
@@ -427,11 +348,6 @@ def logic(id_gui, color, roll_num, p):
 
                 AddPlayer.greens_piece[p].idd = id_logic
 
-                # kill_id = kill_id_color[0]
-                # kill_color = kill_id_color[1]
-
-                kill_id = None
-                kill_color = None
                 return id_logic, 'GREEN', kill_id_color
 
         elif color == "YELLOW":
@@ -444,10 +360,6 @@ def logic(id_gui, color, roll_num, p):
 
                 AddPlayer.yellows_piece[p].idd = id_logic
 
-                # kill_id = kill_id_color[0]
-                # kill_color = kill_id_color[1]
-                kill_id = None
-                kill_color = None
                 if Ybox.at_home(AddPlayer.yellows_piece):
                     for item in AddPlayer.turn_player_list_logic:
                         if item[1] == 'YELLOW':
@@ -464,10 +376,6 @@ def logic(id_gui, color, roll_num, p):
 
                 AddPlayer.yellows_piece[p].idd = id_logic
 
-                # kill_id = kill_id_color[0]
-                # kill_color = kill_id_color[1]
-                kill_id = None
-                kill_color = None
                 return id_logic, 'YELLOW', kill_id_color
 
     except IndexError:
