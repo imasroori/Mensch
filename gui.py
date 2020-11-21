@@ -149,7 +149,7 @@ class Board:
                             [self.lbl_blue[i].place(y=80 * ((logic.Bbox.blue_step[0] + 6) % 7) + 56,
                                                     x=80 * (((logic.Bbox.blue_step[0] + 6) // 7) - 1) + 132) for i in
                              range(4)]
-
+                            self.counter_lbl(color_selected)
                             self.lbl_users[0].config(text=username, fg="blue")
                             self.lbl_users[0].pack(padx=50, pady=2)
 
@@ -161,7 +161,7 @@ class Board:
                             # x + 12  y+6
                             [self.lbl_red[i].place(y=80 * ((self.reds[0].idd + 6) % 7) + 56,
                                                    x=80 * (((self.reds[0].idd + 6) // 7) - 1) + 132) for i in range(4)]
-
+                            self.counter_lbl(color_selected)
                             self.lbl_users[1].config(text=username, fg="red")
                             self.lbl_users[1].pack(padx=50, pady=2)
 
@@ -173,7 +173,7 @@ class Board:
                             [self.lbl_green[i].place(y=80 * ((self.greens[0].idd + 6) % 7) + 56,
                                                      x=80 * (((self.greens[0].idd + 6) // 7) - 1) + 132) for i in
                              range(4)]
-
+                            self.counter_lbl(color_selected)
                             self.lbl_users[2].config(text=username, fg="green")
                             self.lbl_users[2].pack(padx=50, pady=2)
 
@@ -186,7 +186,7 @@ class Board:
                             [self.lbl_yellow[i].place(y=80 * ((self.yellows[0].idd + 6) % 7) + 56,
                                                       x=80 * (((self.yellows[0].idd + 6) // 7) - 1) + 132) for i in
                              range(4)]
-
+                            self.counter_lbl(color_selected)
                             self.lbl_users[3].config(text=username, fg="yellow")
                             self.lbl_users[3].pack(padx=50, pady=2)
 
@@ -346,25 +346,32 @@ class Board:
                 if killed_id_color:
                     for ii in killed_id_color:
                         self.killed(ii[0], ii[1])
+                        self.counter_lbl(ii[1])
+                self.counter_lbl(color)
                 self.lbl_blue[0].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
 
             elif color == "RED":
                 if killed_id_color:
                     for ii in killed_id_color:
                         self.killed(ii[0], ii[1])
+                        self.counter_lbl(ii[1])
+                self.counter_lbl(color)
                 self.lbl_red[0].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
 
             elif color == "GREEN":
                 if killed_id_color:
                     for ii in killed_id_color:
                         self.killed(ii[0], ii[1])
-
+                        self.counter_lbl(ii[1])
+                self.counter_lbl(color)
                 self.lbl_green[0].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
 
             elif color == "YELLOW":
                 if killed_id_color:
                     for ii in killed_id_color:
                         self.killed(ii[0], ii[1])
+                        self.counter_lbl(ii[1])
+                self.counter_lbl(color)
                 self.lbl_yellow[0].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
             logic.win()
 
@@ -394,25 +401,32 @@ class Board:
                 if killed_id_color:
                     for ii in killed_id_color:
                         self.killed(ii[0], ii[1])
+                        self.counter_lbl(ii[1])
+                self.counter_lbl(color)
                 self.lbl_blue[1].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
 
             elif color == "RED":
                 if killed_id_color:
                     for ii in killed_id_color:
                         self.killed(ii[0], ii[1])
+                        self.counter_lbl(ii[1])
+                self.counter_lbl(color)
                 self.lbl_red[1].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
 
             elif color == "GREEN":
                 if killed_id_color:
                     for ii in killed_id_color:
                         self.killed(ii[0], ii[1])
+                        self.counter_lbl(ii[1])
+                self.counter_lbl(color)
                 self.lbl_green[1].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
-                # self.lbl_green[1].configure(text=logic.Gbox.overlap( lis=logic.AddPlayer.greens_piece),
-                #                             compound=CENTER)
+
             elif color == "YELLOW":
                 if killed_id_color:
                     for ii in killed_id_color:
                         self.killed(ii[0], ii[1])
+                        self.counter_lbl(ii[1])
+                self.counter_lbl(color)
                 self.lbl_yellow[1].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
             # self.turn()
             logic.win()
@@ -444,26 +458,32 @@ class Board:
                 if killed_id_color:
                     for ii in killed_id_color:
                         self.killed(ii[0], ii[1])
+                        self.counter_lbl(ii[1])
+                self.counter_lbl(color)
                 self.lbl_blue[2].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
 
             elif color == "RED":
                 if killed_id_color:
                     for ii in killed_id_color:
                         self.killed(ii[0], ii[1])
+                        self.counter_lbl(ii[1])
+                self.counter_lbl(color)
                 self.lbl_red[2].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
 
             elif color == "GREEN":
                 if killed_id_color:
                     for ii in killed_id_color:
                         self.killed(ii[0], ii[1])
+                        self.counter_lbl(ii[1])
+                self.counter_lbl(color)
                 self.lbl_green[2].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
-                # self.lbl_green[2].configure(text=logic.Gbox.overlap( lis=logic.AddPlayer.greens_piece),
-                #                             compound=CENTER)
 
             elif color == "YELLOW":
                 if killed_id_color:
                     for ii in killed_id_color:
                         self.killed(ii[0], ii[1])
+                        self.counter_lbl(ii[1])
+                self.counter_lbl(color)
                 self.lbl_yellow[2].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
             logic.win()
         except TypeError:
@@ -495,26 +515,33 @@ class Board:
                 if killed_id_color:
                     for ii in killed_id_color:
                         self.killed(ii[0], ii[1])
+                        self.counter_lbl(ii[1])
+                self.counter_lbl(color)
                 self.lbl_blue[3].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
 
             elif color == "RED":
                 if killed_id_color:
                     for ii in killed_id_color:
                         self.killed(ii[0], ii[1])
+                        self.counter_lbl(ii[1])
+                self.counter_lbl(color)
                 self.lbl_red[3].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
 
             elif color == "GREEN":
                 if killed_id_color:
                     for ii in killed_id_color:
                         self.killed(ii[0], ii[1])
+                        self.counter_lbl(ii[1])
+
+                self.counter_lbl(color)
                 self.lbl_green[3].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
-                # self.lbl_green[3].configure(text=logic.Gbox.overlap( lis=logic.AddPlayer.greens_piece),
-                #                             compound=CENTER)
 
             elif color == "YELLOW":
                 if killed_id_color:
                     for ii in killed_id_color:
                         self.killed(ii[0], ii[1])
+                        self.counter_lbl(ii[1])
+                self.counter_lbl(color)
                 self.lbl_yellow[3].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
             # self.turn()
             logic.win()
@@ -567,6 +594,48 @@ class Board:
             self.lbl_yellow[killed_piece].place(x=80 * (((logic.Ybox.yellow_step[0] + 6) // 7) - 1) + 132,
                                                 y=80 * ((logic.Ybox.yellow_step[0] + 6) % 7) + 56)
             logic.AddPlayer.yellows_piece[killed_piece].idd = logic.Ybox.yellow_step[0]
+
+    def counter_lbl(self, color):
+        if color == 'GREEN':
+            tmp = logic.Gbox.overlap(lis=logic.AddPlayer.greens_piece)
+            self.lbl_green[3].configure(text=tmp[3] if tmp[3] != 1 else ' ', compound=CENTER, font='Nazli 20 bold',
+                                        fg='white')
+            self.lbl_green[2].configure(text=tmp[2] if tmp[2] != 1 else ' ', compound=CENTER, font='Nazli 20 bold',
+                                        fg='white')
+            self.lbl_green[1].configure(text=tmp[1] if tmp[1] != 1 else ' ', compound=CENTER, font='Nazli 20 bold',
+                                        fg='white')
+            self.lbl_green[0].configure(text=tmp[0] if tmp[0] != 1 else ' ', compound=CENTER, font='Nazli 20 bold',
+                                        fg='white')
+        elif color == 'BLUE':
+            tmp = logic.Bbox.overlap(lis=logic.AddPlayer.blues_piece)
+            self.lbl_blue[3].configure(text=tmp[3] if tmp[3] != 1 else ' ', compound=CENTER, font='Nazli 20 bold',
+                                       fg='white')
+            self.lbl_blue[2].configure(text=tmp[2] if tmp[2] != 1 else ' ', compound=CENTER, font='Nazli 20 bold',
+                                       fg='white')
+            self.lbl_blue[1].configure(text=tmp[1] if tmp[1] != 1 else ' ', compound=CENTER, font='Nazli 20 bold',
+                                       fg='white')
+            self.lbl_blue[0].configure(text=tmp[0] if tmp[0] != 1 else ' ', compound=CENTER, font='Nazli 20 bold',
+                                       fg='white')
+        elif color == 'RED':
+            tmp = logic.Rbox.overlap(lis=logic.AddPlayer.reds_piece)
+            self.lbl_red[3].configure(text=tmp[3] if tmp[3] != 1 else ' ', compound=CENTER, font='Nazli 20 bold',
+                                      fg='white')
+            self.lbl_red[2].configure(text=tmp[2] if tmp[2] != 1 else ' ', compound=CENTER, font='Nazli 20 bold',
+                                      fg='white')
+            self.lbl_red[1].configure(text=tmp[1] if tmp[1] != 1 else ' ', compound=CENTER, font='Nazli 20 bold',
+                                      fg='white')
+            self.lbl_red[0].configure(text=tmp[0] if tmp[0] != 1 else ' ', compound=CENTER, font='Nazli 20 bold',
+                                      fg='white')
+        elif color == 'YELLOW':
+            tmp = logic.Ybox.overlap(lis=logic.AddPlayer.yellows_piece)
+            self.lbl_yellow[3].configure(text=tmp[3] if tmp[3] != 1 else ' ', compound=CENTER, font='Nazli 20 bold',
+                                         fg='white')
+            self.lbl_yellow[2].configure(text=tmp[2] if tmp[2] != 1 else ' ', compound=CENTER, font='Nazli 20 bold',
+                                         fg='white')
+            self.lbl_yellow[1].configure(text=tmp[1] if tmp[1] != 1 else ' ', compound=CENTER, font='Nazli 20 bold',
+                                         fg='white')
+            self.lbl_yellow[0].configure(text=tmp[0] if tmp[0] != 1 else ' ', compound=CENTER, font='Nazli 20 bold',
+                                         fg='white')
 
 
 class RankInfo:

@@ -105,11 +105,14 @@ class Gbox:
     def overlap(lis=None):
         if lis is None:
             lis = AddPlayer.greens_piece
-        c_lap = 1
-        for i in range(1, len(lis)):
-            if AddPlayer.greens_piece[i].idd == AddPlayer.greens_piece[i - 1].idd:
-                c_lap += 1
-        return c_lap
+        # c_lap = 1
+        idd_list = []
+        idd_count = []
+        for i in lis:
+            idd_list.append(i.idd)
+        for i in idd_list:
+            idd_count.append(idd_list.count(i))
+        return idd_count
 
 
 class Ybox:
@@ -149,6 +152,19 @@ class Ybox:
     def move_check(piece):
         return piece in Ybox.yellow_step[1:len(Ybox.yellow_step) - 1]
 
+    @staticmethod
+    def overlap(lis=None):
+        if lis is None:
+            lis = AddPlayer.yellows_piece
+        # c_lap = 1
+        idd_list = []
+        idd_count = []
+        for i in lis:
+            idd_list.append(i.idd)
+        for i in idd_list:
+            idd_count.append(idd_list.count(i))
+        return idd_count
+
 
 class Bbox:
     blue_step = [1, 3, 10, 17, 16, 15, 22, 29, 30, 31, 38, 45, 46, 47, 40, 33, 34, 35, 28, 21, 20, 19, 12, 5, 4, 11]
@@ -186,8 +202,21 @@ class Bbox:
     def move_check(piece):
         return piece in Bbox.blue_step[1:len(Bbox.blue_step) - 1]
 
+    @staticmethod
+    def overlap(lis=None):
+        if lis is None:
+            lis = AddPlayer.blues_piece
+        # c_lap = 1
+        idd_list = []
+        idd_count = []
+        for i in lis:
+            idd_list.append(i.idd)
+        for i in idd_list:
+            idd_count.append(idd_list.count(i))
+        return idd_count
 
-class Rbox():
+
+class Rbox:
     red_step = [43, 29, 30, 31, 38, 45, 46, 47, 40, 33, 34, 35, 28, 21, 20, 19, 12, 5, 4, 3, 10, 17, 16, 15, 22, 23]
     counter_all_piece = 0
 
@@ -222,6 +251,19 @@ class Rbox():
     @staticmethod
     def move_check(piece):
         return piece in Rbox.red_step[1:len(Rbox.red_step) - 1]
+
+    @staticmethod
+    def overlap(lis=None):
+        if lis is None:
+            lis = AddPlayer.reds_piece
+        # c_lap = 1
+        idd_list = []
+        idd_count = []
+        for i in lis:
+            idd_list.append(i.idd)
+        for i in idd_list:
+            idd_count.append(idd_list.count(i))
+        return idd_count
 
 
 def win():

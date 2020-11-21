@@ -1,1 +1,8 @@
 [2020-11-19 00:44:39,979] (logic.py:229) INFO: [('iman', 'RED'), ('ali', 'BLUE'), ('mohammad', 'GREEN'), ('hossein', 'YELLOW')]
+[2020-11-22 00:17:07,471] (logic.py:229) INFO: [('mahdi', 'YELLOW'), ('ali', 'BLUE'), ('iman', 'GREEN'), ('hossein', 'RED')]
+[2020-11-22 00:33:58,254] (logic.py:229) INFO: [('iman', 'GREEN'), ('hossein', 'RED')]
+[2020-11-22 00:41:45,772] (logic.py:232) INFO: [('iman', 'GREEN'), ('ali', 'BLUE')]
+[2020-11-22 00:55:01,652] (logic.py:271) INFO: [('ali', 'GREEN'), ('iman', 'BLUE')]
+[2020-11-22 00:57:30,122] (logic.py:271) INFO: [('asd', 'BLUE'), ('asd', 'YELLOW'), ('asd', 'GREEN'), ('asd', 'RED')]
+[2020-11-22 01:02:20,414] (logic.py:271) INFO: [('asd', 'BLUE'), ('asd', 'GREEN')]
+[2020-11-22 01:12:13,244] (logic.py:271) INFO: [('asd', 'RED'), ('asd', 'BLUE'), ('asd', 'GREEN'), ('asd', 'YELLOW')]
