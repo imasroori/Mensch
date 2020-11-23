@@ -7,21 +7,8 @@ from tkinter import *
 
 AppLogger = logging.getLogger()
 logging.basicConfig(
-    format='[%(asctime)s] (%(filename)s:%(lineno)d) %(levelname)s: %(message)s', filename='info_ranking.log',
+    format='[%(asctime)s] %(levelname)s: %(message)s', filename='info_ranking.log',
     level=logging.DEBUG)
-
-
-def roll_dice(turn_player):
-    if not AddPlayer.turn_player_list_logic:
-        info_rank = Tk()
-        App_Rank = gui.RankInfo(info_rank)
-        info_rank.mainloop()
-        return None
-    else:
-        x = turn_player % len(AddPlayer.turn_player_list_logic)
-        roll_num_out = random.randint(1, 6)
-
-        return roll_num_out
 
 
 class AddPlayer:
