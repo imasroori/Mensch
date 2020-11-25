@@ -1,13 +1,13 @@
 # 1st Project on MaktabSharif,Maktab42, Code by Iman Masroori
 """ In this Module logic of game are designed"""
-import random
+
 import gui
 import logging
 from tkinter import *
 
 AppLogger = logging.getLogger()
 logging.basicConfig(
-    format='[%(asctime)s] %(levelname)s: %(message)s', filename='info_ranking.log',
+    format='[%(asctime)s] %(levelname)s: %(message)s', filename='docs/info_ranking.log',
     level=logging.DEBUG)
 
 
@@ -143,7 +143,6 @@ class Ybox:
     def overlap(lis=None):
         if lis is None:
             lis = AddPlayer.yellows_piece
-        # c_lap = 1
         idd_list = []
         idd_count = []
         for i in lis:
