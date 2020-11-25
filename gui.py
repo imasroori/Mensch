@@ -12,6 +12,7 @@ class Board:
     greens = []
     yellows = []
     dic_colors = {"YELLOW": 'yellow', "BLUE": 'blue', "GREEN": 'green', "RED": 'red'}
+    flag = 1
 
     def __init__(self, master):
         self.master = master
@@ -41,7 +42,7 @@ class Board:
         self.frame_left = Frame(self.master, width=200, height=650)
         self.frame_left.grid(row=0, column=0)
 
-        self.frame_right = Frame(self.master, width=750, height=650, bg="red")
+        self.frame_right = Frame(self.master, width=750, height=650)
         self.frame_right.grid(row=0, column=1)
 
         self.can_board = Canvas(self.frame_right, width=750, height=650)
@@ -59,7 +60,7 @@ class Board:
         self.lbl_yellow = [Label(self.can_board, image=self.photo_yellow_player) for _ in range(4)]
         self.lbl_blue = [Label(self.can_board, image=self.photo_blue_player) for _ in range(4)]
 
-        self.lbl_players = Label(self.frame_panel, text="Players", font="Nazli 18 bold")
+        self.lbl_players = Label(self.frame_panel, text="Players", fg='#ee11ee', font="Nazli 23 bold")
 
         self.lbl_users = [Label(self.frame_panel, font="Nazli 18 bold") for _ in range(4)]
 
@@ -132,7 +133,7 @@ class Board:
             username = self.entry_user.get()
             password = self.entry_pass.get()
             color_selected = self.color_select.get()
-            with open("content/players_user_pass.txt", 'r') as file1:
+            with open("docs/players_user_pass.txt", 'r') as file1:
                 for line in file1:
                     key, val = line.strip().split()
                     if username == key and val == password:
@@ -207,13 +208,13 @@ class Board:
 
         except ValueError:
             self.lbl_ok.configure(text="Error!", fg="#ff0000", font="Nazli 15 bold")
-            self.lbl_ok.place(x=300, y=225)
+            self.lbl_ok.place(x=300, y=215)
 
     def register(self):
         username = self.entry_user.get()
         password = self.entry_pass.get()
         if username and password:
-            with open("content/players_user_pass.txt", 'a') as f:
+            with open("docs/players_user_pass.txt", 'a') as f:
                 f.write(username)
                 f.write('\t')
                 f.write(password)
@@ -284,14 +285,14 @@ class Board:
         self.color_select = ttk.Combobox(self.login_form, textvariable=StringVar())
         self.color_select.config(values=self.values_color, state='readonly')
         self.color_select.place(x=305, y=188)
-        self.btn_enter = Button(self.login_form, text="Enter", bg="#10ee15", font="Nazli 15 bold",
-                                activebackground="#92ff92",bd=4,
+        self.btn_enter = Button(self.login_form, text="Enter", bg="#80ff00", font="Nazli 15 bold",
+                                activebackground="#92ff92", bd=4,
                                 command=self.enter).place(x=220, y=250)
-        self.btn_register = Button(self.login_form, text="Register", bg="#4040cc", font="Nazli 15 bold",
-                                   activebackground="#30b9ff",bd=4,
+        self.btn_register = Button(self.login_form, text="Register", bg="#0080ff", font="Nazli 15 bold",
+                                   activebackground="#30b9ff", bd=4,
                                    command=self.register).place(x=300, y=250)
-        self.btn_cancel = Button(self.login_form, text="Cancel", bg="#ff3333", font="Nazli 15 bold",
-                                 activebackground="#ff8080",bd=4,
+        self.btn_cancel = Button(self.login_form, text="Cancel", bg="#ff8000", font="Nazli 15 bold",
+                                 activebackground="#ff8080", bd=4,
                                  command=self.cancel).place(x=400, y=250)
 
     def start_game(self):
@@ -324,22 +325,9 @@ class Board:
             self.roll_num = random.randint(1, 6)
             self.lbl_roll.configure(text=self.roll_num)
             self.lbl_roll.pack()
-            Board.turn_player += 1
-            # for item in logic.AddPlayer.turn_player_list_logic:
-            #     if item[1] == 'BLUE' and logic.Bbox.out_game(logic.AddPlayer.blues_piece):
-            #         Board.turn_player += 1
-            #         break
-            #     elif item[1] == 'GREEN' and logic.Gbox.out_game(logic.AddPlayer.greens_piece):
-            #         Board.turn_player += 1
-            #         break
-            #     elif item[1] == 'RED' and logic.Rbox.out_game(logic.AddPlayer.reds_piece):
-            #         Board.turn_player += 1
-            #         break
-            #     elif item[1] == 'YELLOW' and logic.Ybox.out_game(logic.AddPlayer.yellows_piece):
-            #         Board.turn_player += 1
-            #         break
 
-            self.turn()
+            self.roll_turn()
+            # self.turn()
 
         else:
             self.btn_roll.configure(state=DISABLED)
@@ -371,11 +359,6 @@ class Board:
                 self.counter_lbl(color)
                 self.lbl_blue[0].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
                 self.roll_turn(roll_num)
-                # self.roll_num = 0
-                # if roll_num == 6:
-                #     Board.turn_player -= 1
-                # # else:
-                # #     Board.turn_player += 1
 
             elif color == "RED":
                 if killed_id_color:
@@ -385,11 +368,6 @@ class Board:
                 self.counter_lbl(color)
                 self.lbl_red[0].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
                 self.roll_turn(roll_num)
-                # self.roll_num = 0
-                # if roll_num == 6:
-                #     Board.turn_player -= 1
-                # # else:
-                # #     Board.turn_player += 1
 
             elif color == "GREEN":
                 if killed_id_color:
@@ -399,11 +377,6 @@ class Board:
                 self.counter_lbl(color)
                 self.lbl_green[0].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
                 self.roll_turn(roll_num)
-                # self.roll_num = 0
-                # if roll_num == 6:
-                #     Board.turn_player -= 1
-                # # else:
-                # #     Board.turn_player += 1
 
             elif color == "YELLOW":
                 if killed_id_color:
@@ -413,11 +386,6 @@ class Board:
                 self.counter_lbl(color)
                 self.lbl_yellow[0].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
                 self.roll_turn(roll_num)
-                # self.roll_num = 0
-                # if roll_num == 6:
-                #     Board.turn_player -= 1
-                # # else:
-                # #     Board.turn_player += 1
 
             logic.win()
 
@@ -451,11 +419,6 @@ class Board:
                 self.counter_lbl(color)
                 self.lbl_blue[1].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
                 self.roll_turn(roll_num)
-                # self.roll_num = 0
-                # if roll_num == 6:
-                #     Board.turn_player -= 1
-                # # else:
-                # #     Board.turn_player += 1
 
             elif color == "RED":
                 if killed_id_color:
@@ -465,11 +428,6 @@ class Board:
                 self.counter_lbl(color)
                 self.lbl_red[1].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
                 self.roll_turn(roll_num)
-                # self.roll_num = 0
-                # if roll_num == 6:
-                #     Board.turn_player -= 1
-                # # else:
-                # #     Board.turn_player += 1
 
             elif color == "GREEN":
                 if killed_id_color:
@@ -479,11 +437,6 @@ class Board:
                 self.counter_lbl(color)
                 self.lbl_green[1].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
                 self.roll_turn(roll_num)
-                # self.roll_num = 0
-                # if roll_num == 6:
-                #     Board.turn_player -= 1
-                # # else:
-                # #     Board.turn_player += 1
 
             elif color == "YELLOW":
                 if killed_id_color:
@@ -493,11 +446,6 @@ class Board:
                 self.counter_lbl(color)
                 self.lbl_yellow[1].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
                 self.roll_turn(roll_num)
-                # self.roll_num = 0
-                # if roll_num == 6:
-                #     Board.turn_player -= 1
-                # # else:
-                # #     Board.turn_player += 1
 
             logic.win()
         except TypeError:
@@ -532,11 +480,6 @@ class Board:
                 self.counter_lbl(color)
                 self.lbl_blue[2].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
                 self.roll_turn(roll_num)
-                # self.roll_num = 0
-                # if roll_num == 6:
-                #     Board.turn_player -= 1
-                # # else:
-                # #     Board.turn_player += 1
 
             elif color == "RED":
                 if killed_id_color:
@@ -546,11 +489,6 @@ class Board:
                 self.counter_lbl(color)
                 self.lbl_red[2].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
                 self.roll_turn(roll_num)
-                # self.roll_num = 0
-                # if roll_num == 6:
-                #     Board.turn_player -= 1
-                # # else:
-                # #     Board.turn_player += 1
 
             elif color == "GREEN":
                 if killed_id_color:
@@ -560,11 +498,6 @@ class Board:
                 self.counter_lbl(color)
                 self.lbl_green[2].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
                 self.roll_turn(roll_num)
-                # self.roll_num = 0
-                # if roll_num == 6:
-                #     Board.turn_player -= 1
-                # # else:
-                # #     Board.turn_player += 1
 
             elif color == "YELLOW":
                 if killed_id_color:
@@ -574,11 +507,6 @@ class Board:
                 self.counter_lbl(color)
                 self.lbl_yellow[2].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
                 self.roll_turn(roll_num)
-                # self.roll_num = 0
-                # if roll_num == 6:
-                #     Board.turn_player -= 1
-                # # else:
-                # #     Board.turn_player += 1
 
             logic.win()
         except TypeError:
@@ -614,11 +542,6 @@ class Board:
                 self.counter_lbl(color)
                 self.lbl_blue[3].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
                 self.roll_turn(roll_num)
-                # self.roll_num = 0
-                # if roll_num == 6:
-                #     Board.turn_player -= 1
-                # # else:
-                # #     Board.turn_player += 1
 
             elif color == "RED":
                 if killed_id_color:
@@ -628,11 +551,6 @@ class Board:
                 self.counter_lbl(color)
                 self.lbl_red[3].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
                 self.roll_turn(roll_num)
-                # self.roll_num = 0
-                # if roll_num == 6:
-                #     Board.turn_player -= 1
-                # # else:
-                # #     Board.turn_player += 1
 
             elif color == "GREEN":
                 if killed_id_color:
@@ -643,11 +561,6 @@ class Board:
                 self.counter_lbl(color)
                 self.lbl_green[3].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
                 self.roll_turn(roll_num)
-                # self.roll_num = 0
-                # if roll_num == 6:
-                #     Board.turn_player -= 1
-                # # else:
-                # #     Board.turn_player += 1
 
             elif color == "YELLOW":
                 if killed_id_color:
@@ -657,11 +570,6 @@ class Board:
                 self.counter_lbl(color)
                 self.lbl_yellow[3].place(x=80 * (((target_id + 6) // 7) - 1) + 132, y=80 * ((target_id + 6) % 7) + 56)
                 self.roll_turn(roll_num)
-                # self.roll_num = 0
-                # if roll_num == 6:
-                #     Board.turn_player -= 1
-                # # else:
-                # #     Board.turn_player += 1
 
             logic.win()
             print(f"row is {i}  and col is {j}", "id in gui is: ", id_gui)
@@ -687,12 +595,65 @@ class Board:
                 fg=color, font="Nazli 17 bold")
 
             self.lbl_turn.pack()
-            # Board.turn_player += 1
 
-    def roll_turn(self, roll_num):
-        self.roll_num = 0
-        if roll_num == 6:
-            Board.turn_player -= 1
+    def roll_turn(self, roll_n=None):
+
+        if roll_n is not None:
+            self.roll_num = 0
+            if roll_n == 6:
+                Board.turn_player -= 1
+
+        elif roll_n is None:
+            Board.turn_player += 1
+            self.turn()
+            usr = logic.AddPlayer.turn_player_list_logic[
+                Board.turn_player % len(logic.AddPlayer.turn_player_list_logic)]
+            if self.roll_num == 6:
+                return None
+
+            elif usr[1] == 'BLUE' and logic.Bbox.out_game(logic.AddPlayer.blues_piece):
+                if self.roll_num != 6:
+                    if Board.flag < 3:
+                        Board.turn_player -= 1
+                        Board.flag += 1
+                        self.roll_num = 0
+                    else:
+                        Board.flag = 1
+                else:
+                    Board.turn_player -= 1
+                # break
+            elif usr[1] == 'GREEN' and logic.Gbox.out_game(logic.AddPlayer.greens_piece):
+                if self.roll_num != 6:
+                    if Board.flag < 3:
+                        Board.turn_player -= 1
+                        Board.flag += 1
+                        self.roll_num = 0
+                    else:
+                        Board.flag = 1
+                else:
+                    Board.turn_player -= 1
+                # break
+            elif usr[1] == 'YELLOW' and logic.Ybox.out_game(logic.AddPlayer.yellows_piece):
+                if self.roll_num != 6:
+                    if Board.flag < 3:
+                        Board.turn_player -= 1
+                        Board.flag += 1
+                        self.roll_num = 0
+                    else:
+                        Board.flag = 1
+                else:
+                    Board.turn_player -= 1
+                # break
+            elif usr[1] == 'RED' and logic.Rbox.out_game(logic.AddPlayer.reds_piece):
+                if self.roll_num != 6:
+                    if Board.flag < 3:
+                        Board.turn_player -= 1
+                        Board.flag += 1
+                        self.roll_num = 0
+                    else:
+                        Board.flag = 1
+                else:
+                    Board.turn_player -= 1
 
     def killed(self, killed_piece, killed_color):
 
@@ -772,7 +733,7 @@ class RankInfo:
             c_rank += 1
             Label(self.win_ranks, text=f'Rank {c_rank}: ' + str(item[0]), font='Nazli 25 bold',
                   fg=RankInfo.dic_colors[item[1]]).pack()
-        btn_close = Button(self.win_ranks, text='Ok!',bg='#c390c3', font='Nazli 15 bold', command=self.exit)
+        btn_close = Button(self.win_ranks, text='Ok,Finished!', bg='#c390c3', font='Nazli 15 bold', command=self.exit)
         btn_close.pack()
 
     def exit(self):

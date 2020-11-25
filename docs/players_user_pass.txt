@@ -4,4 +4,7 @@ ali        alimasroori
 mohammad  210587
 mahdi    mahdi@212
 hossein	110
-
+player1	1234
+player2	1234
+player3	1234
+player4	1234
