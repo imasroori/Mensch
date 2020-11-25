@@ -298,7 +298,6 @@ class Board:
     def start_game(self):
         print("!=======   Start Game   =======!")
         print(logic.AddPlayer.turn_player_list_logic)
-        # self.frame_roll = Frame(self.frame_left, width=200, height=400)
 
         self.frame_roll.place(x=0, y=250)
         self.filemenu.entryconfigure(0, state=DISABLED)
@@ -309,8 +308,6 @@ class Board:
         self.lbl_turn.configure(text=text_inp, font="Nazli 17 bold",
                                 fg=Board.dic_colors[logic.AddPlayer.turn_player_list_logic[0][1]])
         self.lbl_turn.pack()
-
-        # Board.turn_player += 1
 
         self.label_roll = Label(self.frame_roll, image=self.photo_roll_dice, width=150, height=150)
         self.label_roll.pack(pady=10, padx=10)
