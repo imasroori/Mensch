@@ -207,7 +207,7 @@ class Board:
                     self.lbl_ok.place(x=190, y=210)
 
         except ValueError:
-            self.lbl_ok.configure(text="Error!", fg="#ff0000", font="Nazli 15 bold")
+            self.lbl_ok.configure(text="Error! Not Valid.", fg="#ff0000", font="Nazli 15 bold")
             self.lbl_ok.place(x=300, y=215)
 
     def register(self):

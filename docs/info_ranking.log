@@ -1,2 +1,6 @@
 [2020-11-25 09:44:09,804] INFO: [('iman', 'GREEN'), ('ali', 'BLUE'), ('asd', 'RED')]
 [2020-11-25 14:07:28,150] INFO: [('player3', 'BLUE'), ('player1', 'RED'), ('player4', 'YELLOW'), ('player2', 'GREEN')]
+[2020-11-25 16:46:33,924] INFO: [('player4', 'BLUE'), ('player2', 'YELLOW'), ('player3', 'RED'), ('player1', 'GREEN')]
+[2020-11-25 16:59:55,800] INFO: [('iman', 'GREEN'), ('asd', 'RED'), ('ali', 'BLUE')]
+[2020-11-25 17:06:14,541] INFO: [('mohammad', 'YELLOW'), ('mahdi', 'RED')]
+[2020-11-25 17:12:17,962] INFO: [('iman', 'GREEN'), ('ali', 'BLUE')]
