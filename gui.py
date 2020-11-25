@@ -40,6 +40,7 @@ class Board:
         self.photo_yellow_player = PhotoImage(file="content/images/YELLOW-PLAYER.png", width=30, height=45)
 
         self.frame_left = Frame(self.master, width=200, height=650)
+
         self.frame_left.grid(row=0, column=0)
 
         self.frame_right = Frame(self.master, width=750, height=650)
@@ -127,6 +128,7 @@ class Board:
                         self.can_board.create_oval(80 * i + 120, 80 * j + 50, 80 * i + 180, 80 * j + 110,
                                                    fill="#ffffff")
         self.frame_panel.place(x=0, y=0)
+        self.can_board.create_line(10, 0, 10, 950, dash=(10, 4))
 
     def enter(self):
         try:
@@ -606,6 +608,7 @@ class Board:
             usr = logic.AddPlayer.turn_player_list_logic[
                 Board.turn_player % len(logic.AddPlayer.turn_player_list_logic)]
             if self.roll_num == 6:
+                Board.flag = 1
                 return None
 
             elif usr[1] == 'BLUE' and logic.Bbox.out_game(logic.AddPlayer.blues_piece):
@@ -618,6 +621,7 @@ class Board:
                         Board.flag = 1
                 else:
                     Board.turn_player -= 1
+                    Board.flag = 1
                 # break
             elif usr[1] == 'GREEN' and logic.Gbox.out_game(logic.AddPlayer.greens_piece):
                 if self.roll_num != 6:
@@ -629,6 +633,7 @@ class Board:
                         Board.flag = 1
                 else:
                     Board.turn_player -= 1
+                    Board.flag = 1
                 # break
             elif usr[1] == 'YELLOW' and logic.Ybox.out_game(logic.AddPlayer.yellows_piece):
                 if self.roll_num != 6:
@@ -640,6 +645,7 @@ class Board:
                         Board.flag = 1
                 else:
                     Board.turn_player -= 1
+                    Board.flag = 1
                 # break
             elif usr[1] == 'RED' and logic.Rbox.out_game(logic.AddPlayer.reds_piece):
                 if self.roll_num != 6:
@@ -651,6 +657,7 @@ class Board:
                         Board.flag = 1
                 else:
                     Board.turn_player -= 1
+                    Board.flag = 1
 
     def killed(self, killed_piece, killed_color):
 

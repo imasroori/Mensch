@@ -307,6 +307,12 @@ def logic(id_gui, color, roll_num, p):
                 if Bbox.at_home(AddPlayer.blues_piece):
                     for item in AddPlayer.turn_player_list_logic:
                         if item[1] == 'BLUE':
+                            if len(AddPlayer.turn_player_list_logic) % 2 == 0:
+                                gui.Board.turn_player = AddPlayer.turn_player_list_logic.index(item) - 1
+                            else:
+                                if (gui.Board.turn_player // 3) % 2 == 0:
+                                    gui.Board.turn_player = AddPlayer.turn_player_list_logic.index(item) - 1
+
                             AddPlayer.turn_player_list_logic.remove(item)
                             AddPlayer.ranking.append(item)
 
@@ -335,6 +341,12 @@ def logic(id_gui, color, roll_num, p):
                 if Rbox.at_home(AddPlayer.reds_piece):
                     for item in AddPlayer.turn_player_list_logic:
                         if item[1] == 'RED':
+                            if len(AddPlayer.turn_player_list_logic) % 2 == 0:
+                                gui.Board.turn_player = AddPlayer.turn_player_list_logic.index(item) - 1
+                            else:
+                                if (gui.Board.turn_player // 3) % 2 == 0:
+                                    gui.Board.turn_player = AddPlayer.turn_player_list_logic.index(item) - 1
+
                             AddPlayer.turn_player_list_logic.remove(item)
                             AddPlayer.ranking.append(item)
 
@@ -363,6 +375,12 @@ def logic(id_gui, color, roll_num, p):
                 if Gbox.at_home(AddPlayer.greens_piece):
                     for item in AddPlayer.turn_player_list_logic:
                         if item[1] == 'GREEN':
+                            if len(AddPlayer.turn_player_list_logic) % 2 == 0:
+                                gui.Board.turn_player = AddPlayer.turn_player_list_logic.index(item) - 1
+                            else:
+                                if (gui.Board.turn_player // 3) % 2 == 0:
+                                    gui.Board.turn_player = AddPlayer.turn_player_list_logic.index(item) - 1
+
                             AddPlayer.turn_player_list_logic.remove(item)
                             AddPlayer.ranking.append(item)
 
@@ -391,6 +409,12 @@ def logic(id_gui, color, roll_num, p):
                 if Ybox.at_home(AddPlayer.yellows_piece):
                     for item in AddPlayer.turn_player_list_logic:
                         if item[1] == 'YELLOW':
+                            if len(AddPlayer.turn_player_list_logic) % 2 == 0:
+                                gui.Board.turn_player = AddPlayer.turn_player_list_logic.index(item) - 1
+                            else:
+                                if (gui.Board.turn_player // 3) % 2 == 0:
+                                    gui.Board.turn_player = AddPlayer.turn_player_list_logic.index(item) - 1
+
                             AddPlayer.turn_player_list_logic.remove(item)
                             AddPlayer.ranking.append(item)
 
